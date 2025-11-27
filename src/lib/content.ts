@@ -1,4 +1,4 @@
-export const gameData: Record<string, any> = {
+export const gameData: Record<string, unknown> = {
     states: [
         {
             id: "home",
