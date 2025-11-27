@@ -71,12 +71,20 @@
         },
         {
             "id": "explore-1",
-            "title": "[Explore 1]",
-            "description": "[Explore 1]",
+            "title": "Explored 1",
+            "description": "You make your best effort to explore, but can't find much due to the darkness. However, you do see a small stone on the ground.",
             "options": [
                 {
-                    "action": "Restart",
+                    "action": "Pick up the stone",
                     "state": "start"
+                },
+                {
+                    "action": "Look around to see if there are more objects",
+                    "state": "defeat"
+                },
+                {
+                    "action": "Sit down and think about what to do next / how to use it",
+                    "state": "sat-down"
                 }
             ]
         }
