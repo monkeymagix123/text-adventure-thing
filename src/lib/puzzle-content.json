@@ -22,8 +22,46 @@
                         "state": "puzzle-prime-start"
                     },
                     {
-                        "action": "Look around for some clues",
+                        "action": "Try to find some clues",
+                        "state": "puzzle-prime-hint-1"
+                    },
+                    {
+                        "action": "Leave the room",
+                        "state": "puzzle-prime-fail"
+                    }
+                ]
+            },
+            {
+                "id": "puzzle-prime-hint-1",
+                "title": "A Hint?",
+                "description": "As you explore the room, you almost trip over something. When you bend down to look, you find a pedestal with words on it. You can't make out the words, but they seem to be related to the puzzle. Maybe they can help you solve the puzzle?",
+                "options": [
+                    {
+                        "action": "Take a closer look",
+                        "state": "puzzle-prime-hint-2"
+                    },
+                    {
+                        "action": "Ignore the pedestal and just start the puzzle",
                         "state": "puzzle-prime-start"
+                    },
+                    {
+                        "action": "Leave the room",
+                        "state": "puzzle-prime-fail"
+                    }
+                ]
+            },
+            {
+                "id": "puzzle-prime-hint-2",
+                "title": "Reading the Hint",
+                "description": "You peer closely at the pedestal, and you can make out some words. It says something like \"Ev_cIid's Flcm_nts \" and shows the figure of some strange man. By the style and the appearance, you guess that he's Greek. \n You're certain the words must be related to the puzzle, but you can't quite figure out what they mean. Maybe you could read it more closely? You should probably act quickly though, because it seems like the walls are shifting.",
+                "options": [
+                    {
+                        "action": "Look more closely",
+                        "state": "puzzle-prime-fail"
+                    },
+                    {
+                        "action": "Give up reading and just start the puzzle",
+                        "state": "puzzle-prime-start-hint"
                     },
                     {
                         "action": "Leave the room",
@@ -34,13 +72,19 @@
             {
                 "id": "puzzle-prime-start",
                 "title": "Starting the Puzzle",
-                "description": "You look at the switches on the wall. There are sixteen of them arranged in order. They're even neatly labeled. Remembering the words on the pedestal, you take a deep breath and hope for the best.",
+                "description": "You look at the switches on the wall. There are sixteen of them arranged in order. They're even neatly labeled. You take a deep breath and hope for the best.",
                 "options": [
                     {
                         "action": "Move to the first switch",
                         "state": "puzzle-prime-stage-1"
                     }
                 ]
+            },
+            {
+                "id": "puzzle-prime-start-hint",
+                "title": "Starting the Puzzle",
+                "description": "You look at the switches on the wall. There are sixteen of them arranged in order. They're even neatly labeled. Remembering the words on the pedestal, you take a deep breath and hope for the best.",
+                "copy-options": "puzzle-prime-start"
             },
             {
                 "id": "puzzle-prime-end",
