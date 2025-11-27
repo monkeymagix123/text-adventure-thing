@@ -1,8 +1,12 @@
-import { State } from "./state";
+import { loadOption, State } from "./state";
 import puzzles from "$lib/puzzle-content.json";
 
 export function initPuzzles(home: State, states: Map<string, State>): void {
     initPrimePuzzle(home, states);
+}
+
+export function linkPuzzles(home: State, states: Map<string, State>): void {
+    linkPrimePuzzle(home, states);
 }
 
 /**
@@ -16,74 +20,71 @@ export function initPuzzles(home: State, states: Map<string, State>): void {
  */
 function initPrimePuzzle(home: State, states: Map<string, State>): void {
     const primesData = puzzles.primes;
-    const primeNums = puzzles.primes.primeNums;
 
-    const startNum = puzzles.primes.startNum;
-    const endNum = puzzles.primes.endNum;
+    const startNum = primesData.startNum;
+    const endNum = primesData.endNum;
 
     // maybe puzzle where toggle prime #s 1-16, reward is smth used in an upgrade?
     // euclid elements maybe as a hint
 
+    // initialize all states
+    for (const state of primesData.states) {
+        const id = state.id;
+        const title = state.title;
+        const description = state.description;
 
-    // initialize the title and descriptions
-    const start = new State(primesData.start.title, primesData.start.description);
-    states.set("puzzle-prime-start", start);
+        if (!state.isStage) {
+            states.set(id, new State(title, description));
+            continue;
+        }
 
-    for (let i = startNum; i <= endNum; i++) {
-        const title = primesData.stage.title.replace("[#]", i.toString());
-        const description = primesData.stage.description.replace("[#]", i.toString());
+        // create from start to end
+        for (let i = startNum; i <= endNum; i++) {
+            const sid = id.replace("[#]", i.toString());
+            const stitle = title.replace("[#]", i.toString());
+            const sdescription = description.replace("[#]", i.toString());
 
-        const state = new State(title, description);
-
-        states.set(`puzzle-prime-${i}`, state);
-    }
-
-    const end = new State(primesData.end.title, primesData.end.description);
-    states.set("puzzle-prime-end", end);
-
-    const fail = new State(primesData.fail.title, primesData.fail.description);
-    states.set("puzzle-prime-fail", fail);
-
-    // link the states
-    start.addOption(primesData.start.options[0].action, states.get("puzzle-prime-1")!);
-
-    for (let i = startNum; i < endNum; i++) {
-        // get current state
-        const state = states.get(`puzzle-prime-${i}`)!;
-
-        // toggle if prime, don't toggle if not
-        const isToggle = primeNums.includes(i);
-
-        for (const option of primesData.stage.options) {
-            const isCorrect = (isToggle === (option.state === "toggle"));
-
-            // link option result
-            state.addOption(option.action, isCorrect ? states.get(`puzzle-prime-${i + 1}`)! : fail);
+            states.set(sid, new State(stitle, sdescription));
         }
     }
+}
 
-    const i = endNum;
-    const state = states.get(`puzzle-prime-${i}`)!;
+function linkPrimePuzzle(home: State, states: Map<string, State>) {
+    const primesData = puzzles.primes;
 
-    // toggle if prime, don't toggle if not
-    const isToggle = primeNums.includes(i);
+    const primeNums = primesData.primeNums;
+    const startNum = primesData.startNum;
+    const endNum = primesData.endNum;
 
-    for (const option of primesData.stage.options) {
-        const isCorrect = (isToggle === (option.state === "toggle"));
+    const failState = states.get(primesData.fail)!;
 
-        // link option result
-        state.addOption(option.action, isCorrect ? end : fail);
+    for (const state of primesData.states) {
+        if (!state.isStage) {
+            loadOption(states, state);
+            
+            continue;
+        }
+        
+        // for stage ones, need to handle it specially with loop over #s
+        for (let i = startNum; i <= endNum; i++) {
+            // Get current state & next state
+            const id = state.id.replace("[#]", i.toString());
+            const theState = states.get(id)!;
+
+            const nextId = state.id.replace("[#]", (i + 1).toString());
+            const nextStateStr = (i === endNum) ? "puzzle-prime-end" : nextId;
+            const nextState = states.get(nextStateStr)!;
+
+            // toggle if prime, don't toggle if not
+            const isToggle = primeNums.includes(i);
+
+            for (const option of state.options) {
+                const isCorrect = (isToggle === (option.state === "[toggle]"));
+
+                const resultState = isCorrect ? nextState : failState;
+
+                theState.addOption(option.action, resultState);
+            }
+        }
     }
-
-
-    // add fail option that restarts
-    fail.addOption(primesData.fail.options[0].action, home);
-
-    // add end option
-    const endCopyOptions = primesData.end["copy-options"];
-    if (endCopyOptions !== undefined) {
-        end.copyOptions(states.get(endCopyOptions)!);
-    }
-
-    // home.copyOptions(puzzleStates.get("prime-1")!);
 }

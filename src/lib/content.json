@@ -145,7 +145,7 @@
                 },
                 {
                     "action": "Start the primes puzzle",
-                    "state": "puzzle-prime-start"
+                    "state": "puzzle-prime-home"
                 }
             ]
         }

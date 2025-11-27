@@ -1,11 +1,11 @@
-import { State } from "./state";
+import { loadOption, State } from "./state";
 import content from "./content.json";
 // import { source } from "./config";
 
 // import content from "$lib/content-1.json";
 
 import { SvelteMap } from "svelte/reactivity";
-import { initPuzzles } from "./puzzles";
+import { initPuzzles, linkPuzzles } from "./puzzles";
 
 const states: Map<string, State> = new SvelteMap<string, State>();
 
@@ -20,17 +20,10 @@ initPuzzles(home, states);
 
 // add in options
 for (const state of content.states) {
-    const theState = states.get(state.id)!;
-
-    if (state["copy-options"] !== undefined) {
-        theState.copyOptions(states.get(state["copy-options"])!);
-    } else {
-        for (const option of state.options) {
-            theState.addOption(option.action, states.get(option.state)!)
-        }
-    }
-    
+    loadOption(states, state);
 }
+
+linkPuzzles(home, states);
 
 let state = $state(home);
 

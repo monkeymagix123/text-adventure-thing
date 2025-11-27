@@ -37,3 +37,36 @@ export interface Action {
     action: string;
     state: State;
 }
+
+interface StateData {
+    id: string;
+    isStage?: boolean;
+    title: string;
+    description: string;
+    options?: ActionData[];
+    "copy-options"?: string;
+    // fail?: string;
+}
+
+interface ActionData {
+    action: string;
+    state: string;
+}
+
+export function loadOption(states: Map<string, State>, data: StateData): boolean {
+    const theState = states.get(data.id)!;
+
+    if (data.isStage) {
+        return false; // need to handle this specially
+    }
+
+    if (data["copy-options"] !== undefined) {
+        theState.copyOptions(states.get(data["copy-options"])!);
+    } else {
+        for (const option of data.options!) {
+            theState.addOption(option.action, states.get(option.state)!)
+        }
+    }
+
+    return true;
+}

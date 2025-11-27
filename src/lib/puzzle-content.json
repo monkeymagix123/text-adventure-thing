@@ -1,63 +1,5 @@
 {
     "primes": {
-        "title": "Primes",
-        "home": {
-            "title": "A strange room",
-            "description": "You enter the room. It's dark and damp, and the air is heavy. The stone walls are smooth and gritty, and the floor is covered in fine dust. Something tells you that this is a puzzle room, but you don't know what it is, nor how you got here.",
-            "options": [
-                {
-                    "action": "Start the puzzle",
-                    "state": "puzzle-start"
-                },
-                {
-                    "action": "Look around for some clues",
-                    "state": "puzzle-hint"
-                },
-                {
-                    "action": "Leave the room",
-                    "state": "puzzle-fail"
-                }
-            ]
-        },
-        "start": {
-            "title": "Starting the Puzzle",
-            "description": "You look at the switches on the wall. There are sixteen of them arranged in order. They're even neatly labeled. Remembering the words on the pedestal, you take a deep breath and hope for the best.",
-            "options": [
-                {
-                    "action": "Move to the first switch",
-                    "state": "stage"
-                }
-            ]
-        },
-        "end": {
-            "title": "You did it!",
-            "description": "After toggling the sixteen switches, you find yourself back in the room. You can't remember how you got here, but you know you must have done it. Somehow.",
-            "copy-options": "start"
-        },
-        "stage": {
-            "title": "Switch [#]",
-            "description": "You move to switch number [#]. The question is, do you toggle it, or move on to the next one?",
-            "options": [
-                {
-                    "action": "Toggle the switch",
-                    "state": "toggle"
-                },
-                {
-                    "action": "Move on",
-                    "state": "next"
-                }
-            ]
-        },
-        "fail": {
-            "title": "Failed",
-            "description": "As you move, the stone slams shut, plunging you into absolute darkness. You hear a sound like sand falling, and realize the walls are shifting. Without a way out, you are trapped. You never wake up, a forgotten casualty of the dark.",
-            "options": [
-                {
-                    "action": "Restart",
-                    "state": "start"
-                }
-            ]
-        },
         "primeNums": [
             2,
             3,
@@ -67,6 +9,72 @@
             13
         ],
         "startNum": 1,
-        "endNum": 16
+        "endNum": 16,
+        "states": [
+            {
+                "id": "puzzle-prime-home",
+                "title": "A strange room",
+                "description": "You enter the room. It's dark and damp, and the air is heavy. The stone walls are smooth and gritty, and the floor is covered in fine dust. Something tells you that this is a puzzle room, but you don't know what it is, nor how you got here.",
+                "options": [
+                    {
+                        "action": "Start the puzzle",
+                        "state": "puzzle-prime-start"
+                    },
+                    {
+                        "action": "Look around for some clues",
+                        "state": "puzzle-prime-start"
+                    },
+                    {
+                        "action": "Leave the room",
+                        "state": "puzzle-prime-fail"
+                    }
+                ]
+            },
+            {
+                "id": "puzzle-prime-start",
+                "title": "Starting the Puzzle",
+                "description": "You look at the switches on the wall. There are sixteen of them arranged in order. They're even neatly labeled. Remembering the words on the pedestal, you take a deep breath and hope for the best.",
+                "options": [
+                    {
+                        "action": "Move to the first switch",
+                        "state": "puzzle-prime-stage-1"
+                    }
+                ]
+            },
+            {
+                "id": "puzzle-prime-end",
+                "title": "You did it!",
+                "description": "After toggling the sixteen switches, you find yourself back in the room. You can't remember how you got here, but you know you must have done it. Somehow.",
+                "copy-options": "start"
+            },
+            {
+                "id": "puzzle-prime-fail",
+                "title": "Failed",
+                "description": "As you move, the stone slams shut, plunging you into absolute darkness. You hear a sound like sand falling, and realize the walls are shifting. Without a way out, you are trapped. You never wake up, a forgotten casualty of the dark.",
+                "options": [
+                    {
+                        "action": "Restart",
+                        "state": "start"
+                    }
+                ]
+            },
+            {
+                "id": "puzzle-prime-stage-[#]",
+                "isStage": true,
+                "title": "Switch [#]",
+                "description": "You move to switch number [#]. The question is, do you toggle it, or move on to the next one?",
+                "options": [
+                    {
+                        "action": "Toggle the switch",
+                        "state": "[toggle]"
+                    },
+                    {
+                        "action": "Move on",
+                        "state": "[next]"
+                    }
+                ]
+            }
+        ],
+        "fail": "puzzle-prime-fail"
     }
 }
