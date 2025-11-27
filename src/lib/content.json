@@ -1,0 +1,19 @@
+{
+    "content": [
+        {
+            "id": "home",
+            "title": "Home",
+            "description": "Welcome to the game"
+        },
+        {
+            "id": "about",
+            "title": "About",
+            "description": "About the game"
+        },
+        {
+            "id": "contact",
+            "title": "Contact",
+            "description": "Contact information"
+        }
+    ]
+}
