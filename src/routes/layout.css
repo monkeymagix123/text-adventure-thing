@@ -28,9 +28,10 @@
 
 /* ⚙️ Actions Container (Buttons) */
 .actions-container {
-    display: grid;
+    /* display: grid; */
     /* Create a responsive grid: 2 columns on small screens, 3 on larger */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+    display: flex;
     gap: 15px; /* Spacing between grid items */
     padding-top: 10px;
 }
