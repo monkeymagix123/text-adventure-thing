@@ -27,6 +27,10 @@ export class State {
     doOption(action: Action) {
         setState(action.state);
     }
+
+    copyOptions(other: State) {
+        this.options = other.options;
+    }
 }
 
 export interface Action {
