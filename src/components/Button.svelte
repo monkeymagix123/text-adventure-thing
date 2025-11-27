@@ -19,6 +19,9 @@
         transition: background-color 0.2s, transform 0.1s;
         background-color: #4285f4; /* Google Blue */
         color: white;
+        
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        min-width: auto;
     }
 
     button:hover {
