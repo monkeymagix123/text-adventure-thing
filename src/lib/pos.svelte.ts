@@ -1,16 +1,12 @@
 import { State } from "./state";
 
-const home = new State("Home", "Welcome to the game");
-const start = new State(
-    "Start",
-    "You find yourself in a dark room. There's not quite anything to do at the moment, so you might as well explore."
-);
+import content from "./content.json";
+
+const home = new State(content.states[0].title, content.states[0].description);
+const start = new State(content.states[1].title, content.states[1].description);
 home.addOption("Play", start);
 
-const satDown = new State(
-    "Sat Down",
-    "You sit down, expecting to feel the cold floor beneath your feet. But instead, you find yourself in another dark room. There's not quite anything to do at the moment, so you might as well explore."
-);
+const satDown = new State(content.states[2].title, content.states[2].description);
 start.addOption("Explore", start);
 start.addOption("Look around", start);
 start.addOption("Sit down", satDown);
