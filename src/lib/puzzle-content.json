@@ -1,8 +1,9 @@
 {
     "primes": {
+        "title": "Primes",
         "start": {
-            "title": "Puzzle 1 Start",
-            "description": "You look at the switches on the wall. There seem to be sixteen of them. Remembering the words on the pedestal, you hope for the best.",
+            "title": "Starting the Puzzle",
+            "description": "You look at the switches on the wall. There are sixteen of them arranged in order. They're even neatly labeled. Remembering the words on the pedestal, you take a deep breath and hope for the best.",
             "options": [
                 {
                     "action": "Move to the first switch",
@@ -11,11 +12,11 @@
             ]
         },
         "end": {
-            "title": "Puzzle 1 End",
-            "description": "TODO"
+            "title": "You did it!",
+            "description": "After toggling the sixteen switches, you find yourself back in your room. You can't remember how you got here, but you know you must have done it. Somehow."
         },
         "stage": {
-            "title": "Puzzle 1 [#]",
+            "title": "Switch [#]",
             "description": "You move to switch number [#]. The question is, do you toggle it, or move on to the next one?",
             "options": [
                 {
@@ -30,7 +31,7 @@
         },
         "fail": {
             "title": "Failed",
-            "description": "As you move, the stone slams shut, plunging you into absolute darkness. You hear a sound like sand falling, and realize the walls are shifting.",
+            "description": "As you move, the stone slams shut, plunging you into absolute darkness. You hear a sound like sand falling, and realize the walls are shifting. Without a way out, you are trapped. You never wake up, a forgotten casualty of the dark.",
             "options": [
                 {
                     "action": "Restart",
