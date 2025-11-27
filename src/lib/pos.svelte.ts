@@ -24,7 +24,7 @@ for (const state of content.states) {
     
 }
 
-const home = states.get("home")!;
+export const home = states.get("home")!;
 
 let state = $state(home);
 
