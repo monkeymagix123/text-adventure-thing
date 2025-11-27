@@ -22,7 +22,7 @@
                 },
                 {
                     "action": "Look around",
-                    "state": "defeat"
+                    "state": "looked-around-basic"
                 },
                 {
                     "action": "Sit down",
@@ -40,6 +40,17 @@
             "id": "defeat",
             "title": "Defeat",
             "description": "Suddenly, an unknown force strikes you, and you feel a cold breeze.",
+            "options": [
+                {
+                    "action": "Restart",
+                    "state": "start"
+                }
+            ]
+        },
+        {
+            "id": "looked-around-basic",
+            "title": "Looking Around?",
+            "description": "You look around, hoping to spot something you could use. Suddenly, an unknown force strikes you, and you feel a cold breeze. It seems familiar but also seems to make you feel sleepy. Very sleepy, in fact.",
             "options": [
                 {
                     "action": "Restart",
@@ -84,7 +95,7 @@
                 },
                 {
                     "action": "Look around to see if there are more objects",
-                    "state": "defeat"
+                    "state": "looked-around-basic"
                 },
                 {
                     "action": "Sit down and think about what to do next / how to use it",
@@ -99,7 +110,7 @@
             "options": [
                 {
                     "action": "Look around to see if there are more objects",
-                    "state": "defeat"
+                    "state": "looked-around-basic"
                 },
                 {
                     "action": "Sit down and think about what to do next / how to use it",
@@ -114,7 +125,7 @@
             "options": [
                 {
                     "action": "Look around to see if there are more objects",
-                    "state": "defeat"
+                    "state": "looked-around-basic"
                 },
                 {
                     "action": "Sit down and think about what to do next / how to use it",
