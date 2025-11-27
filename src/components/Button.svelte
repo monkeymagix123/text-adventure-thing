@@ -19,12 +19,13 @@
         transition: background-color 0.2s, transform 0.1s;
         background-color: #4285f4; /* Google Blue */
         color: white;
-        
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         min-width: auto;
     }
 
     button:hover {
+        transition: all 0.2s ease-in-out;
         background-color: #3367d6; /* Darker blue on hover */
         transform: translateY(-2px);
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
