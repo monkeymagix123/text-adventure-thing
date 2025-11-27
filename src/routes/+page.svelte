@@ -1,5 +1,6 @@
 <script>
 	import { getState } from "$lib/pos.svelte";
+	import Button from "../components/Button.svelte";
 
     const state = $derived(getState());
 </script>
@@ -9,7 +10,7 @@
     <p> {state.description} </p>
 
     {#each state.options as option}
-        <button onclick={ () => { console.log(option); state.doOption(option); } }> {option.action} </button>
+        <Button onclick={ () => { console.log(option); state.doOption(option); } }> {option.action} </Button>
     {/each}
 
     <button> test </button>
