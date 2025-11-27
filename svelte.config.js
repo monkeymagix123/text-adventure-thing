@@ -4,7 +4,7 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 const repository = 'text-adventure-thing';
 const isProduction = process.env.NODE_ENV === 'production';
 
-const base = isProduction ? `/${repository}/` : '';
+const base = isProduction ? `/${repository}` : '';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
