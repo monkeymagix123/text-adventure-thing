@@ -47,24 +47,28 @@ function initPrimePuzzle(home: State): void {
         const state = puzzleStates.get(`puzzle-prime-${i}`)!;
 
         // toggle if prime, don't toggle if not
-        const goodAction = primeNums.includes(i) ? primesData.stage.options[0].action : primesData.stage.options[1].action;
-        const badAction = primeNums.includes(i) ? primesData.stage.options[1].action : primesData.stage.options[0].action;
+        const isToggle = primeNums.includes(i);
 
-        // link the options
-        state.addOption(goodAction, puzzleStates.get(`puzzle-prime-${i + 1}`)!);
-        state.addOption(badAction, fail);
+        for (const option of primesData.stage.options) {
+            const isCorrect = (isToggle === (option.state === "toggle"));
+
+            // link option result
+            state.addOption(option.action, isCorrect ? puzzleStates.get(`puzzle-prime-${i + 1}`)! : fail);
+        }
     }
 
     const i = endNum;
     const state = puzzleStates.get(`puzzle-prime-${i}`)!;
 
     // toggle if prime, don't toggle if not
-    const goodAction = primeNums.includes(i) ? primesData.stage.options[0].action : primesData.stage.options[1].action;
-    const badAction = primeNums.includes(i) ? primesData.stage.options[1].action : primesData.stage.options[0].action;
+    const isToggle = primeNums.includes(i);
 
-    // link the options
-    state.addOption(goodAction, end);
-    state.addOption(badAction, fail);
+    for (const option of primesData.stage.options) {
+        const isCorrect = (isToggle === (option.state === "toggle"));
+
+        // link option result
+        state.addOption(option.action, isCorrect ? end : fail);
+    }
 
 
     // add fail option that restarts
