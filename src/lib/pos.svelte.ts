@@ -1,16 +1,25 @@
 import { State } from "./state";
-// import content from "./content.json";
+import content from "./content.json";
 // import { source } from "./config";
 
-import content from "$lib/content-1.json";
+// import content from "$lib/content-1.json";
 
 import { SvelteMap } from "svelte/reactivity";
+import { initPuzzles } from "./puzzles";
 
 const states: Map<string, State> = new SvelteMap<string, State>();
 
 // populate states with basic stuff
 for (const state of content.states) {
     states.set(state.id, new State(state.title, state.description));
+}
+
+export const home = states.get("home")!;
+
+const puzzleStates: Map<string, State> = initPuzzles(home);
+
+for (const [key, value] of puzzleStates.entries()) {
+    states.set(key, value);
 }
 
 // add in options
@@ -26,8 +35,6 @@ for (const state of content.states) {
     }
     
 }
-
-export const home = states.get("home")!;
 
 let state = $state(home);
 

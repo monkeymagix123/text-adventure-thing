@@ -115,21 +115,37 @@
                 {
                     "action": "Sit down and think about what to do next / how to use it",
                     "state": "sat-down"
+                },
+                {
+                    "action": "Explore the room more",
+                    "state": "explore-2"
                 }
             ]
         },
         {
             "id": "explore-2",
             "title": "Explored 2",
-            "description": "You make your best effort to explore, but can't find much due to the darkness.",
+            "description": "You make your best effort to explore, but can't find much due to the darkness. However, you do notice a hard metallic surface. As you feel around, you notice what appears to be a handle.",
             "options": [
                 {
                     "action": "Look around to see if there are more objects",
                     "state": "looked-around-basic"
                 },
                 {
-                    "action": "Sit down and think about what to do next / how to use it",
+                    "action": "Sit down and think about what to do next",
                     "state": "sat-down"
+                },
+                {
+                    "action": "Go back and check the stone you ignored",
+                    "state": "explore-1"
+                },
+                {
+                    "action": "Try to open the metallic door",
+                    "state": "corridor-entrance"
+                },
+                {
+                    "action": "Start the primes puzzle",
+                    "state": "puzzle-prime-start"
                 }
             ]
         }

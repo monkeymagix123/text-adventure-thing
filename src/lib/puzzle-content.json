@@ -1,0 +1,52 @@
+{
+    "primes": {
+        "start": {
+            "title": "Puzzle 1 Start",
+            "description": "You look at the switches on the wall. There seem to be sixteen of them. Remembering the words on the pedestal, you hope for the best.",
+            "options": [
+                {
+                    "action": "Move to the first switch",
+                    "state": "stage"
+                }
+            ]
+        },
+        "end": {
+            "title": "Puzzle 1 End",
+            "description": "TODO"
+        },
+        "stage": {
+            "title": "Puzzle 1 [#]",
+            "description": "You move to switch number [#]. The question is, do you toggle it, or move on to the next one?",
+            "options": [
+                {
+                    "action": "Toggle the switch",
+                    "state": "toggle"
+                },
+                {
+                    "action": "Move on",
+                    "state": "next"
+                }
+            ]
+        },
+        "fail": {
+            "title": "Failed",
+            "description": "As you move, the stone slams shut, plunging you into absolute darkness. You hear a sound like sand falling, and realize the walls are shifting.",
+            "options": [
+                {
+                    "action": "Restart",
+                    "state": "start"
+                }
+            ]
+        },
+        "primeNums": [
+            2,
+            3,
+            5,
+            7,
+            11,
+            13
+        ],
+        "startNum": 1,
+        "endNum": 16
+    }
+}
