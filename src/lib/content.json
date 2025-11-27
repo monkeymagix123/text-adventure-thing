@@ -76,8 +76,42 @@
             "options": [
                 {
                     "action": "Pick up the stone",
-                    "state": "start"
+                    "state": "has-stone"
                 },
+                {
+                    "action": "Leave the stone behind",
+                    "state": "explore-2"
+                },
+                {
+                    "action": "Look around to see if there are more objects",
+                    "state": "defeat"
+                },
+                {
+                    "action": "Sit down and think about what to do next / how to use it",
+                    "state": "sat-down"
+                }
+            ]
+        },
+        {
+            "id": "has-stone",
+            "title": "Has Stone",
+            "description": "You pick up the stone. It feels smooth and light. The strange thing is, it somehow feels cold to the touch, yet also seems to heat you up. You shrug and put it in your pocket. Maybe you can figure out what it does later / find a way to use it?",
+            "options": [
+                {
+                    "action": "Look around to see if there are more objects",
+                    "state": "defeat"
+                },
+                {
+                    "action": "Sit down and think about what to do next / how to use it",
+                    "state": "sat-down"
+                }
+            ]
+        },
+        {
+            "id": "explore-2",
+            "title": "Explored 2",
+            "description": "You make your best effort to explore, but can't find much due to the darkness.",
+            "options": [
                 {
                     "action": "Look around to see if there are more objects",
                     "state": "defeat"
