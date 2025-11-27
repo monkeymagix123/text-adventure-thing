@@ -16,11 +16,7 @@ for (const state of content.states) {
 
 export const home = states.get("home")!;
 
-const puzzleStates: Map<string, State> = initPuzzles(home);
-
-for (const [key, value] of puzzleStates.entries()) {
-    states.set(key, value);
-}
+initPuzzles(home, states);
 
 // add in options
 for (const state of content.states) {

@@ -3,13 +3,16 @@ import puzzles from "$lib/puzzle-content.json";
 
 const puzzleStates = new Map<string, State>();
 
-export function initPuzzles(home: State): Map<string, State> {
-    initPrimePuzzle(home);
+export function initPuzzles(home: State, states: Map<string, State>): void {
+    initPrimePuzzle(home, states);
 
-    return puzzleStates;
+    // merge allStates with puzzleStates
+    for (const [key, value] of puzzleStates.entries()) {
+        states.set(key, value);
+    }
 }
 
-function initPrimePuzzle(home: State): void {
+function initPrimePuzzle(home: State, states: Map<string, State>): void {
     const primesData = puzzles.primes;
     const primeNums = puzzles.primes.primeNums;
 
@@ -73,6 +76,12 @@ function initPrimePuzzle(home: State): void {
 
     // add fail option that restarts
     fail.addOption(primesData.fail.options[0].action, home);
+
+    // add end option
+    const endCopyOptions = primesData.end["copy-options"];
+    if (endCopyOptions !== undefined) {
+        end.copyOptions(states.get(endCopyOptions)!);
+    }
 
     // home.copyOptions(puzzleStates.get("prime-1")!);
 }

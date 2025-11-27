@@ -13,7 +13,8 @@
         },
         "end": {
             "title": "You did it!",
-            "description": "After toggling the sixteen switches, you find yourself back in your room. You can't remember how you got here, but you know you must have done it. Somehow."
+            "description": "After toggling the sixteen switches, you find yourself back in the room. You can't remember how you got here, but you know you must have done it. Somehow.",
+            "copy-options": "start"
         },
         "stage": {
             "title": "Switch [#]",
