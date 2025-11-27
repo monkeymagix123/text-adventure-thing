@@ -1,5 +1,8 @@
 import { State } from "./state";
-import content from "./content.json";
+// import content from "./content.json";
+// import { source } from "./config";
+
+import content from "$lib/content-1.json";
 
 import { SvelteMap } from "svelte/reactivity";
 

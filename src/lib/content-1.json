@@ -1,0 +1,368 @@
+{
+    "states": [
+        {
+            "id": "home",
+            "title": "Home",
+            "description": "Welcome to the game. You are about to enter the Endless Dark, a labyrinth rumored to adapt to your fear.",
+            "options": [
+                {
+                    "action": "Begin the Descent",
+                    "state": "start"
+                }
+            ]
+        },
+        {
+            "id": "start",
+            "title": "The Dark Cell",
+            "description": "You wake up in a damp, cold room. The air is still and heavy. Your eyes slowly adjust, revealing only smooth, dark stone walls and a floor covered in fine, gritty dust. There's not quite anything to do at the moment, so you might as well explore.",
+            "options": [
+                {
+                    "action": "Start exploring the walls",
+                    "state": "explore-1"
+                },
+                {
+                    "action": "Look closely at the floor and surroundings",
+                    "state": "looked-around-basic"
+                },
+                {
+                    "action": "Sit down and try to remember how you got here",
+                    "state": "sat-down"
+                }
+            ]
+        },
+        {
+            "id": "sat-down",
+            "title": "A Moment of Reflection",
+            "description": "You sit down, expecting to feel the cold floor. Instead, a wave of profound fatigue washes over you. You realize that in the darkness, time and space feel fluid and unreliable. You must stand up and act before the quiet consumes you.",
+            "copy-options": "start"
+        },
+        {
+            "id": "defeat",
+            "title": "Consumed by Fear",
+            "description": "Suddenly, an unknown force strikes you. It isn't a physical blow, but a surge of pure, agonizing panic that steals your breath and mind. You feel a cold breeze, and the darkness wraps around you like a shroud.",
+            "options": [
+                {
+                    "action": "Restart (A faint hope remains)",
+                    "state": "start"
+                }
+            ]
+        },
+        {
+            "id": "looked-around-basic",
+            "title": "A Sense of Dread",
+            "description": "You scan the room. The dust seems to have been disturbed recently. You try to focus, hoping to spot a clue, but the effort makes your head spin. Suddenly, an unknown force strikes you, and you feel a cold breeze. It seems familiar but also seems to make you feel sleepy. Very sleepy, in fact. You must shake it off.",
+            "options": [
+                {
+                    "action": "Shake off the sleepiness and search again",
+                    "state": "explore-1"
+                }
+            ]
+        },
+        {
+            "id": "game-over",
+            "title": "Game Over: Slain",
+            "description": "You have been slain by the dangers of the Endless Dark. Your journey ends here.",
+            "options": [
+                {
+                    "action": "Restart",
+                    "state": "start"
+                }
+            ]
+        },
+        {
+            "id": "victory",
+            "title": "Victory: The Sunken Vault",
+            "description": "The bright light is blinding, but as your eyes adjust, you realize you are standing in a magnificent circular vault. In the center, a shaft of sunlight breaks through a distant opening, illuminating a single, ornate chest. You have won the game, finding the treasure at the heart of the labyrinth.",
+            "options": [
+                {
+                    "action": "Restart and explore other paths",
+                    "state": "start"
+                }
+            ]
+        },
+        {
+            "id": "explore-1",
+            "title": "The Stone's Discovery",
+            "description": "You make your best effort to explore the perimeter, but can't find much due to the darkness. However, your foot kicks a small, oddly smooth stone on the ground. It feels unnaturally cold.",
+            "options": [
+                {
+                    "action": "Pick up the Cold Stone",
+                    "state": "has-stone"
+                },
+                {
+                    "action": "Leave the stone behind and continue searching",
+                    "state": "explore-2"
+                },
+                {
+                    "action": "Feel around the walls for a secret passage",
+                    "state": "looked-around-basic"
+                }
+            ]
+        },
+        {
+            "id": "has-stone",
+            "title": "Holding the Stone",
+            "description": "You pick up the stone. It feels smooth and light. The strange thing is, it feels cold to the touch, yet a faint, warm vibration seems to emanate from its core. You shrug and put it in your pocket. You decide to search again, and this time, your hand brushes against a cold, metallic surface—it feels like a hidden door.",
+            "options": [
+                {
+                    "action": "Touch the door with the Cold Stone",
+                    "state": "door-power-surge"
+                },
+                {
+                    "action": "Try to force the metallic door open",
+                    "state": "corridor-entrance"
+                },
+                {
+                    "action": "Look around for other exits",
+                    "state": "looked-around-basic"
+                }
+            ]
+        },
+        {
+            "id": "explore-2",
+            "title": "The Hidden Door",
+            "description": "You leave the stone and continue exploring the wall surfaces. Your hand brushes against a cold, metallic surface—it feels like a hidden door, deeply recessed into the stone wall.",
+            "options": [
+                {
+                    "action": "Try to open the metallic door",
+                    "state": "corridor-entrance"
+                },
+                {
+                    "action": "Go back and check the stone you ignored",
+                    "state": "explore-1"
+                },
+                {
+                    "action": "Sit down and think about what to do next",
+                    "state": "sat-down"
+                }
+            ]
+        },
+        {
+            "id": "door-power-surge",
+            "title": "Illumination",
+            "description": "The moment the cold stone touches the metallic door, a powerful blue current flashes across the surface. The stone emits a bright, non-burning light, revealing the door is etched with strange, glowing glyphs. A small, mechanical 'click' echoes through the silence. The door is now unlocked and the corridor beyond is faintly visible.",
+            "options": [
+                {
+                    "action": "Step through the illuminated door (with stone light)",
+                    "state": "corridor-lit"
+                },
+                {
+                    "action": "Put the stone away and step through",
+                    "state": "corridor-dark-warning"
+                }
+            ]
+        },
+        {
+            "id": "corridor-entrance",
+            "title": "The Dark Corridor",
+            "description": "You manage to shove the heavy door open. Beyond it is a narrow, dusty corridor, equally shrouded in oppressive darkness. You can't see your hands in front of your face. You feel the wall with your hand and realize it forks ahead.",
+            "options": [
+                {
+                    "action": "Continue forward into the dark, feeling the wall",
+                    "state": "corridor-fork-dark"
+                },
+                {
+                    "action": "Close the door and go back",
+                    "state": "start"
+                }
+            ]
+        },
+        {
+            "id": "corridor-lit",
+            "title": "The Illuminated Fork",
+            "description": "The Cold Stone casts a pale blue, steady glow, illuminating the narrow, dusty corridor. You see two paths ahead: one leading steeply up, and the other winding down, disappearing into the depths. You also spot a small, faded warning sign half-hidden behind a rock.",
+            "options": [
+                {
+                    "action": "Read the faded warning sign",
+                    "state": "read-sign"
+                },
+                {
+                    "action": "Take the winding path down immediately",
+                    "state": "path-down"
+                },
+                {
+                    "action": "Take the steep path up immediately",
+                    "state": "path-up-risky"
+                }
+            ]
+        },
+        {
+            "id": "corridor-dark-warning",
+            "title": "Fading Light",
+            "description": "You quickly step through, but as you put the stone back in your pocket, the door immediately slams shut, plunging you into absolute darkness. You hear a sound like sand falling, and realize the walls are shifting.",
+            "options": [
+                {
+                    "action": "Panic and run blindly",
+                    "state": "defeat"
+                },
+                {
+                    "action": "Take the stone out again and try to find a fork",
+                    "state": "corridor-fork-dark"
+                }
+            ]
+        },
+        {
+            "id": "read-sign",
+            "title": "Deciphering the Warning",
+            "description": "You move the rock and hold the stone's light to the sign. It is written in a strange, angular script, but you somehow understand it. It reads: 'The Ascent is a Lie. The Descent Hides the Key.' You return to the fork, the choice now clear (or confusing).",
+            "options": [
+                {
+                    "action": "Trust the sign: Take the winding path down",
+                    "state": "path-down"
+                },
+                {
+                    "action": "Ignore the sign, assuming a trap: Take the steep path up",
+                    "state": "path-up-risky"
+                }
+            ]
+        },
+        {
+            "id": "corridor-fork-dark",
+            "title": "Blind Choice",
+            "description": "Groping in the pitch black, you eventually realize the corridor splits. You can only feel the gradient: one side leads steeply up, the other winds downwards. You must choose quickly, the air is getting thinner.",
+            "options": [
+                {
+                    "action": "Feel your way up",
+                    "state": "path-up-dark"
+                },
+                {
+                    "action": "Feel your way down",
+                    "state": "path-down-dark"
+                }
+            ]
+        },
+        {
+            "id": "path-up-risky",
+            "title": "The Ascent",
+            "description": "You ascend, ignoring the warning. After a few tense moments, the corridor opens into a large cavern filled with strange, glowing mushrooms. A soft, humming sound guides you to a small, wooden crate. The air here smells sweet, but poisonous.",
+            "options": [
+                {
+                    "action": "Open the wooden crate immediately",
+                    "state": "ending-safe"
+                },
+                {
+                    "action": "Wait for the poison to clear",
+                    "state": "defeat-waited"
+                }
+            ]
+        },
+        {
+            "id": "path-down",
+            "title": "The Descent and the Key",
+            "description": "You descend slowly, the Cold Stone illuminating the way. The air grows noticeably colder and damp. You arrive in a wide, circular chamber. In the center, a pedestal holds a dull, metallic key, shaped like a serpent. This must be the Key the sign spoke of.",
+            "options": [
+                {
+                    "action": "Take the Serpent Key",
+                    "state": "has-key"
+                },
+                {
+                    "action": "Examine the pedestal before taking the key",
+                    "state": "defeat-pedestal"
+                }
+            ]
+        },
+        {
+            "id": "has-key",
+            "title": "The Serpent Key",
+            "description": "You clutch the cold Serpent Key. It feels ancient and heavy, confirming its importance. You notice a small, inconspicuous, locked iron hatch in the corner of the chamber, almost completely missed by the light.",
+            "options": [
+                {
+                    "action": "Use the Serpent Key on the hatch",
+                    "state": "hatch-open"
+                },
+                {
+                    "action": "Go back and explore the corridor more",
+                    "state": "corridor-lit"
+                }
+            ]
+        },
+        {
+            "id": "hatch-open",
+            "title": "Freedom",
+            "description": "The key slides perfectly into the hatch's lock. With a deafening clang, the hatch pops open, revealing a narrow set of stairs leading into a bright, blinding light. You take a deep breath, and step through, leaving the darkness and the Cold Stone's glow behind.",
+            "options": [
+                {
+                    "action": "Step into the light",
+                    "state": "victory"
+                }
+            ]
+        },
+        {
+            "id": "path-up-dark",
+            "title": "Entrapped",
+            "description": "You grope and climb upwards. You trip over an unseen cable and a heavy, weighted net drops from the ceiling, instantly pinning you against the stone floor. You struggle, but the cold and lack of blood flow set in quickly. The darkness is absolute.",
+            "options": [
+                {
+                    "action": "Struggle until exhaustion",
+                    "state": "game-over-net"
+                }
+            ]
+        },
+        {
+            "id": "path-down-dark",
+            "title": "The Pressure Plate",
+            "description": "You descend, feeling the walls to guide you. You eventually find a wide chamber and step forward, only to realize too late you are standing on a pressure plate. A loud click precedes the sound of stone grating on stone. The walls are beginning to move inwards.",
+            "options": [
+                {
+                    "action": "Try to run back up",
+                    "state": "game-over-crush"
+                }
+            ]
+        },
+        {
+            "id": "game-over-net",
+            "title": "Game Over: Strangled",
+            "description": "The net holds firm, biting into your skin. You pass out from the cold and lack of blood flow. You never wake up, a forgotten casualty of the dark.",
+            "options": [
+                {
+                    "action": "Restart",
+                    "state": "start"
+                }
+            ]
+        },
+        {
+            "id": "game-over-crush",
+            "title": "Game Over: Crushed",
+            "description": "The walls seal the chamber completely, meeting with a final, sickening thud. The air quickly runs out. There is nowhere to run, and the stone has claimed another victim.",
+            "options": [
+                {
+                    "action": "Restart",
+                    "state": "start"
+                }
+            ]
+        },
+        {
+            "id": "defeat-pedestal",
+            "title": "A Foolish Delay",
+            "description": "As you lean in to examine the dusty pedestal, a hidden mechanism springs. A needle coated in a paralyzing agent pricks your hand. You feel your muscles stiffen instantly, and you fall, helpless, in the cold chamber. The darkness begins to fade to black.",
+            "options": [
+                {
+                    "action": "Restart (It was a silly mistake)",
+                    "state": "start"
+                }
+            ]
+        },
+        {
+            "id": "defeat-waited",
+            "title": "Waiting in Vain",
+            "description": "You sit by the crate for what feels like hours, but no help comes. Eventually, the glowing mushrooms begin to pulsate wildly, and a debilitating neurotoxin fills the air. You try to run, but your limbs won't obey.",
+            "options": [
+                {
+                    "action": "Restart",
+                    "state": "start"
+                }
+            ]
+        },
+        {
+            "id": "ending-safe",
+            "title": "Minor Victory: Escape Route",
+            "description": "You open the crate. Inside is a coil of rope and a crude map that leads directly to a surface hatch just above the cavern. You climb out, safe but without solving the deeper mystery of the dark room. You escaped, but you didn't *win*.",
+            "options": [
+                {
+                    "action": "Restart for the true ending",
+                    "state": "start"
+                }
+            ]
+        }
+    ]
+}
