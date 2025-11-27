@@ -1,18 +1,30 @@
 import { State } from "./state";
-
 import content from "./content.json";
 
-const home = new State(content.states[0].title, content.states[0].description);
-const start = new State(content.states[1].title, content.states[1].description);
-home.addOption("Play", start);
+import { SvelteMap } from "svelte/reactivity";
 
-const satDown = new State(content.states[2].title, content.states[2].description);
-start.addOption("Explore", start);
-start.addOption("Look around", start);
-start.addOption("Sit down", satDown);
-start.addOption("Exit game", home); // style this diff?
+const states: Map<string, State> = new SvelteMap<string, State>();
 
-satDown.copyOptions(start);
+// populate states with basic stuff
+for (const state of content.states) {
+    states.set(state.id, new State(state.title, state.description));
+}
+
+// add in options
+for (const state of content.states) {
+    const theState = states.get(state.id)!;
+
+    if (state["copy-options"] !== undefined) {
+        theState.copyOptions(states.get(state["copy-options"])!);
+    } else {
+        for (const option of state.options) {
+            theState.addOption(option.action, states.get(option.state)!)
+        }
+    }
+    
+}
+
+const home = states.get("home")!;
 
 let state = $state(home);
 
