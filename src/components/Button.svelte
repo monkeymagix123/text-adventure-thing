@@ -5,3 +5,25 @@
 <script lang="ts">
     const prop = $props();
 </script>
+
+<style>
+    /* 🔘 Action Button Styling (Assuming Button.svelte handles some of this) */
+    /* This style applies to the custom Button component */
+    button {
+        padding: 15px 20px;
+        font-size: 1.1em;
+        font-weight: 600;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.2s, transform 0.1s;
+        background-color: #4285f4; /* Google Blue */
+        color: white;
+    }
+
+    button:hover {
+        background-color: #3367d6; /* Darker blue on hover */
+        transform: translateY(-2px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    }
+</style>
