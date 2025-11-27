@@ -1,5 +1,6 @@
 {
     "primes": {
+        "name": "Primes",
         "primeNums": [
             2,
             3,
