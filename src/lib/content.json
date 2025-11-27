@@ -27,10 +27,6 @@
                 {
                     "action": "Sit down",
                     "state": "sat-down"
-                },
-                {
-                    "action": "Exit game",
-                    "state": "home"
                 }
             ]
         },
