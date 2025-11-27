@@ -18,11 +18,11 @@
             "options": [
                 {
                     "action": "Explore",
-                    "state": "start"
+                    "state": "explore-1"
                 },
                 {
                     "action": "Look around",
-                    "state": "start"
+                    "state": "defeat"
                 },
                 {
                     "action": "Sit down",
@@ -35,6 +35,50 @@
             "title": "Sat Down",
             "description": "You sit down, expecting to feel the cold floor beneath your feet. But instead, you find yourself in another dark room. There's not quite anything to do at the moment, so you might as well explore.",
             "copy-options": "start"
+        },
+        {
+            "id": "defeat",
+            "title": "Defeat",
+            "description": "Suddenly, an unknown force strikes you, and you feel a cold breeze.",
+            "options": [
+                {
+                    "action": "Restart",
+                    "state": "start"
+                }
+            ]
+        },
+        {
+            "id": "game-over",
+            "title": "Game Over",
+            "description": "You have been slain.",
+            "options": [
+                {
+                    "action": "Restart",
+                    "state": "start"
+                }
+            ]
+        },
+        {
+            "id": "victory",
+            "title": "Victory",
+            "description": "You have won the game.",
+            "options": [
+                {
+                    "action": "Restart",
+                    "state": "start"
+                }
+            ]
+        },
+        {
+            "id": "explore-1",
+            "title": "[Explore 1]",
+            "description": "[Explore 1]",
+            "options": [
+                {
+                    "action": "Restart",
+                    "state": "start"
+                }
+            ]
         }
     ]
 }
