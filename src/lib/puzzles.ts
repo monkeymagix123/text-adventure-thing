@@ -58,6 +58,8 @@ function linkPrimePuzzle(home: State, states: Map<string, State>) {
 
     const failState = states.get(primesData.fail)!;
 
+    const endStr = primesData.end;
+
     for (const state of primesData.states) {
         if (!state.isStage) {
             loadOption(states, state);
@@ -72,7 +74,7 @@ function linkPrimePuzzle(home: State, states: Map<string, State>) {
             const theState = states.get(id)!;
 
             const nextId = state.id.replace("[#]", (i + 1).toString());
-            const nextStateStr = (i === endNum) ? "puzzle-prime-end" : nextId;
+            const nextStateStr = (i === endNum) ? endStr : nextId;
             const nextState = states.get(nextStateStr)!;
 
             // toggle if prime, don't toggle if not

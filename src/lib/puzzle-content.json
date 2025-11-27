@@ -75,6 +75,7 @@
                 ]
             }
         ],
+        "end": "puzzle-prime-end",
         "fail": "puzzle-prime-fail"
     }
 }
