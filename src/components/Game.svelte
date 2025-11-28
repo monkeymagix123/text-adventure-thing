@@ -23,12 +23,12 @@
 
     <section class="actions-container">
         {#each state.options as option}
-            <Button 
+            <button 
                 class="action-button" 
                 onclick={ () => handleOptionClick(option) }
             > 
                 {option.action} 
-            </Button>
+            </button>
         {/each}
 
         <!-- <button class="utility-button"> Test Functionality </button> -->
