@@ -9,3 +9,13 @@ for (const flag of content.flags) {
 }
 
 export default flags;
+
+export function setFlag(flag: string, value: boolean) {
+    flags[flag] = value;
+
+    // maybe show something in achievements?
+}
+
+export function hasAllFlags(reqs: string[]): boolean {
+    return reqs.every((flag: string) => { return flags[flag] });
+}

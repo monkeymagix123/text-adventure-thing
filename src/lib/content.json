@@ -18,8 +18,16 @@
             "description": "You wake up in a dark room. The air is still and heavy, and the silence is unnerving. Somehow, you feel like you've been here before, yet you don't remember why nor how. There's not quite anything to do at the moment, so you might as well explore.",
             "flag-desciptions": [
                 {
-                    "flag": "played-once",
+                    "reqs": {
+                        "flags": ["played-once"]
+                    },
                     "description": "You wake up again in the dark room. Maybe this time you'll learn more about how you got here."
+                },
+                {
+                    "reqs": {
+                        "visit-count": 100
+                    },
+                    "description": "You wake up once again in the dark room for what seems like hundreds of times. Maybe this time you'll finally learn more about how you got here."
                 }
             ],
             "options": [

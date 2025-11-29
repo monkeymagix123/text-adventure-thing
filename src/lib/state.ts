@@ -1,20 +1,22 @@
 import { setState } from "./pos.svelte";
 
-import flags from "./flags";
+import { hasAllFlags, setFlag } from "./flags";
 
 export class State {
     title: string;   
     description: string;
 
-    flagDesc?: FlagData[];
+    flagDesc?: ReqDesc[];
     onEnter?: InterStateData;
     onExit?: InterStateData;
+
+    visitCount: number = 0;
 
     // url: string;
 
     options: Action[];
 
-    constructor(title: string, description: string, flagDesc?: FlagData[], onEnter?: InterStateData, onExit?: InterStateData) {
+    constructor(title: string, description: string, flagDesc?: ReqDesc[], onEnter?: InterStateData, onExit?: InterStateData) {
         this.title = title;
         this.description = description;
 
@@ -51,7 +53,12 @@ export class State {
         if (!this.flagDesc) return desc;
 
         for (const flagData of this.flagDesc) {
-            if (flags[flagData.flag]) {
+            const req = flagData.reqs;
+
+            const flagsEnough = !req.flags || hasAllFlags(req.flags);
+            const visitEnough = !req["visit-count"] || this.visitCount >= req["visit-count"];
+
+            if (flagsEnough && visitEnough) {
                 desc = flagData.description; // later flags are rarer and have higher priority
             }
         }
@@ -63,15 +70,18 @@ export class State {
     enterState() {
         if (this.onEnter !== undefined) {
             for (const flag of this.onEnter["unlock-flags"]!) {
-                flags[flag] = true;
+                setFlag(flag, true);
             }
         }
     }
 
     exitState() {
+        this.visitCount++;
+
+        // Unlock all flags that are unlocked on exit
         if (this.onExit !== undefined) {
             for (const flag of this.onExit["unlock-flags"]!) {
-                flags[flag] = true;
+                setFlag(flag, true);
             }
         }
     }
@@ -87,7 +97,7 @@ export interface StateData {
     isStage?: boolean;
     title: string;
     description: string;
-    "flag-desciptions"?: FlagData[];
+    "flag-desciptions"?: ReqDesc[];
     options?: ActionData[];
     "copy-options"?: string;
     // fail?: string;
@@ -95,9 +105,14 @@ export interface StateData {
     "on-exit"?: InterStateData;
 }
 
-interface FlagData {
-    flag: string;
+interface ReqDesc {
+    reqs: Requirements;
     description: string;
+}
+
+interface Requirements {
+    flags?: string[];
+    "visit-count"?: number;
 }
 
 export interface InterStateData {
