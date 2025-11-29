@@ -14,7 +14,7 @@ const states: Map<string, State> = new SvelteMap<string, State>();
 
 // populate states with basic stuff
 for (const state of content.states) {
-    states.set(state.id, new State(state.title, state.description, state["flag-desciptions"], state["on-enter"], state["on-exit"]));
+    states.set(state.id, new State(state));
 }
 
 export const home = states.get("home")!;

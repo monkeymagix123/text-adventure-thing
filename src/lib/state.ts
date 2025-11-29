@@ -16,13 +16,23 @@ export class State {
 
     options: Action[];
 
-    constructor(title: string, description: string, flagDesc?: ReqDesc[], onEnter?: InterStateData, onExit?: InterStateData) {
-        this.title = title;
-        this.description = description;
+    constructor(data: StateData | string, description?: string) {
+        if (typeof data === "string") {
+            // user put a title for the data slot
+            this.title = data;
+            this.description = description ?? "No description provided.";
 
-        this.flagDesc = flagDesc;
-        this.onEnter = onEnter;
-        this.onExit = onExit;
+            this.options = new Array<Action>();
+
+            return;
+        }
+
+        this.title = data.title;
+        this.description = data.description;
+
+        this.flagDesc = data["flag-desciptions"];
+        this.onEnter = data["on-enter"];
+        this.onExit = data["on-exit"];
 
         this.options = new Array<Action>();
     }

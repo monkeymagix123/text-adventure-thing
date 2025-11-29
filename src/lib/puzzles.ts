@@ -36,7 +36,7 @@ function initPrimePuzzle(home: State, states: Map<string, State>): void {
         const cstate = state as StateData;
 
         if (!cstate.isStage) {
-            states.set(id, new State(title, description, cstate["flag-desciptions"], cstate["on-enter"], cstate["on-exit"]));
+            states.set(id, new State(cstate));
             continue;
         }
 
