@@ -27,15 +27,31 @@
                 "options": [
                     {
                         "action": "Start the puzzle",
-                        "state": "puzzle-prime-start"
+                        "state": "puzzle-prime-start",
+                        "reqs": {
+                            "no-flags": ["solved-puzzle-1"]
+                        }
                     },
                     {
                         "action": "Try to find some clues",
-                        "state": "puzzle-prime-hint-1"
+                        "state": "puzzle-prime-hint-1",
+                        "reqs": {
+                            "no-flags": ["solved-puzzle-1"]
+                        }
                     },
                     {
                         "action": "Leave the room",
-                        "state": "puzzle-prime-fail"
+                        "state": "puzzle-prime-fail",
+                        "reqs": {
+                            "no-flags": ["solved-puzzle-1"]
+                        }
+                    },
+                    {
+                        "action": "Leave the room",
+                        "state": "explore-2",
+                        "reqs": {
+                            "flags": ["solved-puzzle-1"]
+                        }
                     }
                 ]
             },

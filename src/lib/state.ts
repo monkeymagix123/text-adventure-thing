@@ -39,10 +39,11 @@ export class State {
     }
 
     // option modification functions
-    addOption(action: string, state: State): void {
+    addOption(action: string, state: State, reqs?: Requirements): void {
         const option: Action = {
             action: action,
-            state: state
+            state: state,
+            reqs: reqs
         } as Action;
 
         this.options.push(option);
@@ -75,8 +76,21 @@ export class State {
         return desc;
     }
 
+    
+    /**
+     * Get all options that are currently available based on the state's requirements.
+     * @returns {Action[]} An array of all available options.
+     */
     getOptions(): Action[] {
-        return this.options;
+        const options = new Array<Action>();
+
+        for (const option of this.options) {
+            if (util.checkReqs(this, option.reqs)) {
+                options.push(option);
+            }
+        }
+
+        return options;
     }
 
     // actions on enter and on exit
@@ -145,7 +159,7 @@ export function loadOption(states: Map<string, State>, data: StateData): boolean
         theState.copyOptions(states.get(data["copy-options"])!);
     } else {
         for (const option of data.options!) {
-            theState.addOption(option.action, states.get(option.state)!)
+            theState.addOption(option.action, states.get(option.state)!, option.reqs)
         }
     }
 
