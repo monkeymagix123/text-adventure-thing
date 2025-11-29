@@ -53,7 +53,10 @@
             "id": "sat-down",
             "title": "Sat Down",
             "description": "You sit down, expecting to feel the cold floor beneath your feet. But instead, you find yourself in another dark room. Again.",
-            "copy-options": "start"
+            "copy-options": "start",
+            "on-enter": {
+                "resetFlags": true
+            }
         },
         {
             "id": "defeat",
@@ -62,7 +65,8 @@
             "options": [
                 {
                     "action": "Restart",
-                    "state": "start"
+                    "state": "start",
+                    "resetFlags": true
                 }
             ]
         },
@@ -73,7 +77,8 @@
             "options": [
                 {
                     "action": "Restart",
-                    "state": "start"
+                    "state": "start",
+                    "resetFlags": true
                 }
             ]
         },
@@ -84,7 +89,8 @@
             "options": [
                 {
                     "action": "Restart",
-                    "state": "start"
+                    "state": "start",
+                    "resetFlags": true
                 }
             ]
         },
@@ -95,7 +101,8 @@
             "options": [
                 {
                     "action": "Restart",
-                    "state": "start"
+                    "state": "start",
+                    "resetFlags": true
                 }
             ]
         },

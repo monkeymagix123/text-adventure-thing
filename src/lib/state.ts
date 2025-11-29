@@ -1,6 +1,6 @@
 import { setState } from "./pos.svelte";
 
-import { setFlag } from "./flags";
+import { resetFlags, setFlag } from "./flags";
 import { util, type Requirements } from "./util";
 
 export class State {
@@ -45,6 +45,10 @@ export class State {
     
     doOption(action: Action): void {
         setState(action.state);
+
+        if (action.resetFlags) {
+            resetFlags();
+        }
 
         this.exitState();
     }
@@ -93,6 +97,10 @@ export class State {
             for (const flag of this.onEnter["unlock-flags"]!) {
                 setFlag(flag, true);
             }
+
+            if (this.onEnter.resetFlags) {
+                resetFlags();
+            }
         }
     }
 
@@ -103,6 +111,10 @@ export class State {
         if (this.onExit !== undefined) {
             for (const flag of this.onExit["unlock-flags"]!) {
                 setFlag(flag, true);
+            }
+
+            if (this.onExit.resetFlags) {
+                resetFlags();
             }
         }
     }
@@ -135,6 +147,7 @@ interface Desc {
 
 export interface InterStateData {
     "unlock-flags"?: string[];
+    resetFlags?: boolean;
 }
 
 interface ActionData {

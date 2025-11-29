@@ -116,7 +116,8 @@
                 "description": "After toggling the sixteen switches, you find yourself back in the room. You can't remember how you got here, but you know you must have done it. Somehow.",
                 "copy-options": "start",
                 "on-enter": {
-                    "unlock-flags": ["solved-puzzle-1"]
+                    "unlock-flags": ["solved-puzzle-1"],
+                    "resetFlags": true
                 }
             },
             {
@@ -126,7 +127,8 @@
                 "options": [
                     {
                         "action": "Restart",
-                        "state": "start"
+                        "state": "start",
+                        "resetFlags": true
                     }
                 ]
             },
