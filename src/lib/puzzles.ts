@@ -1,4 +1,4 @@
-import { loadOption, State, type StateData } from "./state";
+import { convertOption, loadOption, State, type StateData } from "./state";
 import puzzles from "$lib/puzzle-content.json";
 
 export function initPuzzles(home: State, states: Map<string, State>): void {
@@ -87,7 +87,7 @@ function linkPrimePuzzle(home: State, states: Map<string, State>) {
 
                 const resultState = isCorrect ? nextState : failState;
 
-                theState.addOption(option.action, resultState);
+                theState.addOption(convertOption(option, states, resultState));
             }
         }
     }

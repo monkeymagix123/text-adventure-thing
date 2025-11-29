@@ -39,13 +39,7 @@ export class State {
     }
 
     // option modification functions
-    addOption(action: string, state: State, reqs?: Requirements): void {
-        const option: Action = {
-            action: action,
-            state: state,
-            reqs: reqs
-        } as Action;
-
+    addOption(option: Action): void {
         this.options.push(option);
     }
     
@@ -161,9 +155,15 @@ export function loadOption(states: Map<string, State>, data: StateData): boolean
         theState.copyOptions(states.get(data["copy-options"])!);
     } else {
         for (const option of data.options!) {
-            theState.addOption(option.action, states.get(option.state)!, option.reqs)
+            theState.addOption(convertOption(option, states));
         }
     }
 
     return true;
+}
+
+export function convertOption(data: ActionData, states: Map<string, State>, replaceState?: State): Action {
+    const toState = replaceState ?? states.get(data.state)!;
+
+    return { ...data, state: toState };
 }
