@@ -118,6 +118,7 @@ export interface Action {
     action: string;
     state: State;
     reqs?: Requirements;
+    resetFlags?: boolean;
 }
 
 export interface StateData {
@@ -146,6 +147,7 @@ interface ActionData {
     action: string;
     state: string;
     reqs?: Requirements;
+    resetFlags?: boolean;
 }
 
 export function loadOption(states: Map<string, State>, data: StateData): boolean {
