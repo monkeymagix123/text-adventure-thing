@@ -19,3 +19,7 @@ export function setFlag(flag: string, value: boolean) {
 export function hasAllFlags(reqs: string[]): boolean {
     return reqs.every((flag: string) => { return flags[flag] });
 }
+
+export function hasNoFlags(reqs: string[]): boolean {
+    return reqs.every((flag: string) => { return !flags[flag] });
+}

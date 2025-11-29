@@ -1,12 +1,13 @@
 import { setState } from "./pos.svelte";
 
-import { hasAllFlags, setFlag } from "./flags";
+import { setFlag } from "./flags";
+import { util, type Requirements } from "./util";
 
 export class State {
     title: string;   
-    description: string;
+    description: string; // default description
 
-    reqDesc?: ReqDesc[];
+    reqDesc?: Desc[];
     onEnter?: InterStateData;
     onExit?: InterStateData;
 
@@ -65,13 +66,9 @@ export class State {
         if (!this.reqDesc) return desc;
 
         for (const flagData of this.reqDesc) {
-            const req = flagData.reqs;
-
-            const flagsEnough = !req.flags || hasAllFlags(req.flags);
-            const visitEnough = !req["visit-count"] || this.visitCount >= req["visit-count"];
-
-            if (flagsEnough && visitEnough) {
-                desc = flagData.description; // later flags are rarer and have higher priority
+            // later flags are rarer and have higher priority
+            if (util.checkReqs(this, flagData.reqs)) {
+                desc = flagData.description;
             }
         }
 
@@ -106,6 +103,7 @@ export class State {
 export interface Action {
     action: string;
     state: State;
+    reqs?: Requirements;
 }
 
 export interface StateData {
@@ -113,7 +111,7 @@ export interface StateData {
     isStage?: boolean;
     title: string;
     description: string;
-    "req-desciptions"?: ReqDesc[];
+    "req-desciptions"?: Desc[];
     options?: ActionData[];
     "copy-options"?: string;
     // fail?: string;
@@ -121,14 +119,9 @@ export interface StateData {
     "on-exit"?: InterStateData;
 }
 
-interface ReqDesc {
-    reqs: Requirements;
+interface Desc {
     description: string;
-}
-
-interface Requirements {
-    flags?: string[];
-    "visit-count"?: number;
+    reqs?: Requirements;
 }
 
 export interface InterStateData {
@@ -138,6 +131,7 @@ export interface InterStateData {
 interface ActionData {
     action: string;
     state: string;
+    reqs?: Requirements;
 }
 
 export function loadOption(states: Map<string, State>, data: StateData): boolean {
