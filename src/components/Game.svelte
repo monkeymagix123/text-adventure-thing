@@ -22,7 +22,7 @@
     <hr class="separator" />
 
     <section class="actions-container">
-        {#each state.options as option}
+        {#each state.getOptions() as option}
             <button 
                 class="action-button" 
                 onclick={ () => handleOptionClick(option) }

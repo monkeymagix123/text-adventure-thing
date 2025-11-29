@@ -37,7 +37,8 @@ export class State {
         this.options = new Array<Action>();
     }
 
-    addOption(action: string, state: State) {
+    // option modification functions
+    addOption(action: string, state: State): void {
         const option: Action = {
             action: action,
             state: state
@@ -46,18 +47,19 @@ export class State {
         this.options.push(option);
     }
     
-    doOption(action: Action) {
+    doOption(action: Action): void {
         setState(action.state);
 
         this.exitState();
     }
 
-    copyOptions(other: State) {
+    copyOptions(other: State): void {
         this.options = other.options;
     }
 
 
-    getDescription() {
+    // getters
+    getDescription(): string {
         let desc = this.description;
 
         if (!this.reqDesc) return desc;
@@ -74,6 +76,10 @@ export class State {
         }
 
         return desc;
+    }
+
+    getOptions(): Action[] {
+        return this.options;
     }
 
     // actions on enter and on exit
