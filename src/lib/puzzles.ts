@@ -1,4 +1,4 @@
-import { loadOption, State } from "./state";
+import { loadOption, State, type StateData } from "./state";
 import puzzles from "$lib/puzzle-content.json";
 
 export function initPuzzles(home: State, states: Map<string, State>): void {
@@ -33,8 +33,10 @@ function initPrimePuzzle(home: State, states: Map<string, State>): void {
         const title = state.title;
         const description = state.description;
 
-        if (!state.isStage) {
-            states.set(id, new State(title, description));
+        const cstate = state as StateData;
+
+        if (!cstate.isStage) {
+            states.set(id, new State(title, description, cstate["flag-desciptions"], cstate["on-enter"], cstate["on-exit"]));
             continue;
         }
 

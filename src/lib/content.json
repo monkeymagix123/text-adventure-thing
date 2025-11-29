@@ -1,5 +1,5 @@
 {
-    "flags": ["played-once"],
+    "flags": ["played-once", "solved-puzzle-1"],
     "states": [
         {
             "id": "home",
