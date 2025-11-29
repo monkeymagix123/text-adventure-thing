@@ -37,7 +37,7 @@
                     "state": "explore-1"
                 },
                 {
-                    "action": "Look around",
+                    "action": "Gaze into the darkness, hoping to spot something useful",
                     "state": "looked-around-basic"
                 },
                 {
@@ -59,24 +59,12 @@
             }
         },
         {
-            "id": "defeat",
-            "title": "Defeat",
-            "description": "Suddenly, an unknown force strikes you, and you feel a cold breeze.",
-            "options": [
-                {
-                    "action": "Restart",
-                    "state": "start",
-                    "resetFlags": true
-                }
-            ]
-        },
-        {
             "id": "looked-around-basic",
             "title": "Looking Around?",
-            "description": "You look around, hoping to spot something you could use. Suddenly, an unknown force strikes you, and you feel a cold breeze. It seems familiar but also seems to make you feel sleepy. Very sleepy, in fact.",
+            "description": "As you look around, an unknown force suddenly strikes you. In an instant, you feel a cold breeze that quickly envelops you. It seems familiar but also seems to deprive you of your energy. You try to shake it off and focus, hoping to spot a clue amidst the darkness, only to find that the effort makes your head spin. You have no choice but to give up and submit to the darkness.",
             "options": [
                 {
-                    "action": "Restart",
+                    "action": "Give up",
                     "state": "start",
                     "resetFlags": true
                 }
