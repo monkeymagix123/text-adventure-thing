@@ -1,5 +1,6 @@
 import { loadOption, State } from "./state";
-import content from "./content.json";
+import contentData from "./content.json";
+import { type ContentData } from "./contentData";
 // import { source } from "./config";
 
 // import content from "$lib/content-1.json";
@@ -7,11 +8,13 @@ import content from "./content.json";
 import { SvelteMap } from "svelte/reactivity";
 import { initPuzzles, linkPuzzles } from "./puzzles";
 
+const content = contentData as ContentData;
+
 const states: Map<string, State> = new SvelteMap<string, State>();
 
 // populate states with basic stuff
 for (const state of content.states) {
-    states.set(state.id, new State(state.title, state.description));
+    states.set(state.id, new State(state.title, state.description, state["flag-desciptions"], state["on-enter"], state["on-exit"]));
 }
 
 export const home = states.get("home")!;
@@ -33,4 +36,6 @@ export function getState(): State {
 
 export function setState(newState: State) {
     state = newState;
+
+    newState.enterState();
 }

@@ -16,7 +16,7 @@
 <main>
     <section class="content-header">
         <h1 class="title"> {state.title} </h1>
-        <p class="description"> {state.description} </p>
+        <p class="description"> {state.getDescription()} </p>
     </section>
 
     <hr class="separator" />

@@ -1,4 +1,5 @@
 {
+    "flags": ["played-once"],
     "states": [
         {
             "id": "home",
@@ -15,6 +16,12 @@
             "id": "start",
             "title": "Start",
             "description": "You wake up in a dark room. There's not quite anything to do at the moment, so you might as well explore.",
+            "flag-desciptions": [
+                {
+                    "flag": "played-once",
+                    "description": "You wake up again in the dark room. Maybe this time you'll learn more about the Endless Dark."
+                }
+            ],
             "options": [
                 {
                     "action": "Explore",
@@ -28,7 +35,10 @@
                     "action": "Sit down",
                     "state": "sat-down"
                 }
-            ]
+            ],
+            "on-exit": {
+                "unlock-flags": ["played-once"]
+            }
         },
         {
             "id": "sat-down",

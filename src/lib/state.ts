@@ -1,16 +1,26 @@
 import { setState } from "./pos.svelte";
 
+import flags from "./flags";
+
 export class State {
     title: string;   
     description: string;
+
+    flagDesc?: FlagData[];
+    onEnter?: InterStateData;
+    onExit?: InterStateData;
 
     // url: string;
 
     options: Action[];
 
-    constructor(title: string, description: string) {
+    constructor(title: string, description: string, flagDesc?: FlagData[], onEnter?: InterStateData, onExit?: InterStateData) {
         this.title = title;
         this.description = description;
+
+        this.flagDesc = flagDesc;
+        this.onEnter = onEnter;
+        this.onExit = onExit;
 
         this.options = new Array<Action>();
     }
@@ -26,10 +36,44 @@ export class State {
     
     doOption(action: Action) {
         setState(action.state);
+
+        this.exitState();
     }
 
     copyOptions(other: State) {
         this.options = other.options;
+    }
+
+
+    getDescription() {
+        let desc = this.description;
+
+        if (!this.flagDesc) return desc;
+
+        for (const flagData of this.flagDesc) {
+            if (flags[flagData.flag]) {
+                desc = flagData.description; // later flags are rarer and have higher priority
+            }
+        }
+
+        return desc;
+    }
+
+    // actions on enter and on exit
+    enterState() {
+        if (this.onEnter !== undefined) {
+            for (const flag of this.onEnter["unlock-flags"]!) {
+                flags[flag] = true;
+            }
+        }
+    }
+
+    exitState() {
+        if (this.onExit !== undefined) {
+            for (const flag of this.onExit["unlock-flags"]!) {
+                flags[flag] = true;
+            }
+        }
     }
 }
 
@@ -38,14 +82,26 @@ export interface Action {
     state: State;
 }
 
-interface StateData {
+export interface StateData {
     id: string;
     isStage?: boolean;
     title: string;
     description: string;
+    "flag-desciptions"?: FlagData[];
     options?: ActionData[];
     "copy-options"?: string;
     // fail?: string;
+    "on-enter"?: InterStateData;
+    "on-exit"?: InterStateData;
+}
+
+interface FlagData {
+    flag: string;
+    description: string;
+}
+
+export interface InterStateData {
+    "unlock-flags"?: string[];
 }
 
 interface ActionData {
