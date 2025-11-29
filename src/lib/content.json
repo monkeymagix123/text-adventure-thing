@@ -15,11 +15,11 @@
         {
             "id": "start",
             "title": "Start",
-            "description": "You wake up in a dark room. There's not quite anything to do at the moment, so you might as well explore.",
+            "description": "You wake up in a dark room. The air is still and heavy, and the silence is unnerving. Somehow, you feel like you've been here before, yet don't remember why nor how. There's not quite anything to do at the moment, so you might as well explore.",
             "flag-desciptions": [
                 {
                     "flag": "played-once",
-                    "description": "You wake up again in the dark room. Maybe this time you'll learn more about the Endless Dark."
+                    "description": "You wake up again in the dark room. Maybe this time you'll learn more about how you got here."
                 }
             ],
             "options": [
@@ -43,7 +43,7 @@
         {
             "id": "sat-down",
             "title": "Sat Down",
-            "description": "You sit down, expecting to feel the cold floor beneath your feet. But instead, you find yourself in another dark room. There's not quite anything to do at the moment, so you might as well explore.",
+            "description": "You sit down, expecting to feel the cold floor beneath your feet. But instead, you find yourself in another dark room. Again.",
             "copy-options": "start"
         },
         {
@@ -116,7 +116,7 @@
         {
             "id": "has-stone",
             "title": "Has Stone",
-            "description": "You pick up the stone. It feels smooth and light. The strange thing is, it somehow feels cold to the touch, yet also seems to heat you up. You shrug and put it in your pocket. Maybe you can figure out what it does later / find a way to use it?",
+            "description": "You pick up the stone. It feels smooth and light. The strange thing is, it somehow feels cold to the touch, yet also seems to heat you up. You shrug and put it in your pocket. Maybe you can figure out a way to use it?",
             "options": [
                 {
                     "action": "Look around to see if there are more objects",
