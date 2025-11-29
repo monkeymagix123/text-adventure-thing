@@ -146,7 +146,10 @@
                     "action": "Explore the room more",
                     "state": "explore-2"
                 }
-            ]
+            ],
+            "on-enter": {
+                "unlock-flags": ["has-stone"]
+            }
         },
         {
             "id": "explore-2",
@@ -170,10 +173,23 @@
                     "state": "corridor-entrance"
                 },
                 {
+                    "action": "Touch the door with the Cold Stone",
+                    "state": "door-open",
+                    "reqs": {
+                        "flags": ["has-stone"]
+                    }
+                },
+                {
                     "action": "Start a puzzle !?!?!!",
                     "state": "puzzle-prime-home"
                 }
             ]
+        },
+        {
+            "id": "door-open",
+            "title": "Opened the Door",
+            "description": "You opened the door and won.",
+            "copy-options": "victory"
         }
     ]
 }
