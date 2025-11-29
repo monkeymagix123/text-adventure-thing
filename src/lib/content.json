@@ -1,5 +1,6 @@
 {
     "flags": ["played-once", "solved-puzzle-1"],
+    "temporaryFlags": ["has-stone"],
     "states": [
         {
             "id": "home",
