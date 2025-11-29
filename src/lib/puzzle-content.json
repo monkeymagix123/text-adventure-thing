@@ -16,7 +16,7 @@
                 "id": "puzzle-prime-home",
                 "title": "A strange room",
                 "description": "You enter the room. It's dark and damp, and the air is heavy. The stone walls are smooth and gritty, and the floor is covered in fine dust. Something tells you that this is a puzzle room, but you don't know what it is, nor how you got here.",
-                "flag-desciptions": [
+                "req-desciptions": [
                     {
                         "reqs": {
                             "flags": ["solved-puzzle-1"]

@@ -16,7 +16,7 @@
             "id": "start",
             "title": "Start",
             "description": "You wake up in a dark room. The air is still and heavy, and the silence is unnerving. Somehow, you feel like you've been here before, yet you don't remember why nor how. There's not quite anything to do at the moment, so you might as well explore.",
-            "flag-desciptions": [
+            "req-desciptions": [
                 {
                     "reqs": {
                         "flags": ["played-once"]

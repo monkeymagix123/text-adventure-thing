@@ -6,7 +6,7 @@ export class State {
     title: string;   
     description: string;
 
-    flagDesc?: ReqDesc[];
+    reqDesc?: ReqDesc[];
     onEnter?: InterStateData;
     onExit?: InterStateData;
 
@@ -30,7 +30,7 @@ export class State {
         this.title = data.title;
         this.description = data.description;
 
-        this.flagDesc = data["flag-desciptions"];
+        this.reqDesc = data["req-desciptions"];
         this.onEnter = data["on-enter"];
         this.onExit = data["on-exit"];
 
@@ -60,9 +60,9 @@ export class State {
     getDescription() {
         let desc = this.description;
 
-        if (!this.flagDesc) return desc;
+        if (!this.reqDesc) return desc;
 
-        for (const flagData of this.flagDesc) {
+        for (const flagData of this.reqDesc) {
             const req = flagData.reqs;
 
             const flagsEnough = !req.flags || hasAllFlags(req.flags);
@@ -107,7 +107,7 @@ export interface StateData {
     isStage?: boolean;
     title: string;
     description: string;
-    "flag-desciptions"?: ReqDesc[];
+    "req-desciptions"?: ReqDesc[];
     options?: ActionData[];
     "copy-options"?: string;
     // fail?: string;
