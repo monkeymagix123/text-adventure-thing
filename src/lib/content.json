@@ -111,7 +111,7 @@
         {
             "id": "explore-1",
             "title": "Explored 1",
-            "description": "You make your best effort to explore the area, but can't find much due to the darkness. As you are about to give up, however, you notice a small stone on the ground, faintly glowing and pulsing in the dark. You feel a strange warmth emanating from it.",
+            "description": "You make your best effort to explore the area, but can't find much due to the darkness. As you are about to give up, however, you notice a small stone on the ground, faintly glowing and pulsing in the dark. You feel a strange warmth emanating from it. For some reason, the stone feels — you suddenly realize — strangely familiar, but you don't quite remember exactly when or why you've seen it before.",
             "req-desciptions": [
                 {
                     "reqs": {
@@ -130,11 +130,11 @@
                     "state": "explore-2"
                 },
                 {
-                    "action": "Look around to see if there are more objects",
+                    "action": "Look around for more objects",
                     "state": "looked-around-basic"
                 },
                 {
-                    "action": "Sit down and think about how to use it",
+                    "action": "Sit down and try to figure out what you remember about the stone",
                     "state": "sat-down"
                 }
             ]
@@ -167,7 +167,7 @@
             "description": "You make your best effort to continue exploring the area, but can't find much due to the darkness. However, this time, your hand brushes against a cold, metallic surface. As you feel around, you feel what appears to be a handle. It must be some sort of door. But where does it lead to? You have not the slightest idea.",
             "options": [
                 {
-                    "action": "Look around to see if there are more objects",
+                    "action": "Look around for more objects",
                     "state": "looked-around-basic"
                 },
                 {
