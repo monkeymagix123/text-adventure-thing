@@ -1,0 +1,420 @@
+{
+    "flags": ["played-once", "solved-puzzle-1", "got-magic-stone", "read-diary"],
+    "temporaryFlags": ["has-stone", "room-lit"],
+    "states": [
+        {
+            "id": "home",
+            "title": "Home",
+            "description": "Welcome to the game",
+            "options": [
+                {
+                    "action": "Play",
+                    "state": "start"
+                }
+            ]
+        },
+        {
+            "id": "start",
+            "title": "Start",
+            "description": "You wake up in a dark room. The air is still and heavy, and the silence is unnerving. Somehow, you feel like you've been here before, yet you don't remember why nor how. There's not quite anything to do at the moment, so you might as well explore. You could also try to look into the darkness for something useful, although it's going to be very hard to see anything in the dark until you find a reliable source of light.",
+            "req-desciptions": [
+                {
+                    "reqs": {
+                        "flags": ["played-once"]
+                    },
+                    "description": "You wake up again in the dark room. Maybe this time you'll learn more about how you got here."
+                },
+                {
+                    "reqs": {
+                        "visit-count": 100
+                    },
+                    "description": "You wake up once again in the dark room for what seems like hundreds of times. Maybe this time you'll finally learn more about how you got here."
+                }
+            ],
+            "options": [
+                {
+                    "action": "Explore",
+                    "state": "explore-1"
+                },
+                {
+                    "action": "Gaze into the darkness",
+                    "state": "looked-around-basic"
+                },
+                {
+                    "action": "Sit down",
+                    "state": "sat-down"
+                }
+            ],
+            "on-exit": {
+                "unlock-flags": ["played-once"]
+            }
+        },
+        {
+            "id": "sat-down",
+            "title": "Sat Down",
+            "description": "You sit down, expecting to feel the cold floor beneath your feet. But instead, you find yourself in another dark room. Again.",
+            "copy-options": "start",
+            "on-enter": {
+                "resetFlags": true
+            }
+        },
+        {
+            "id": "looked-around-basic",
+            "title": "Looking Around?",
+            "description": "As you look around, an unknown force suddenly strikes you. In an instant, you feel a cold breeze that quickly envelops you. It seems familiar but also seems to deprive you of your energy. You try to shake it off and focus, hoping to spot a clue amidst the darkness, only to find that the effort makes your head spin. You have no choice but to give up and submit to the darkness.",
+            "req-desciptions": [
+                {
+                    "reqs": {
+                        "visit-count": 1
+                    },
+                    "description": "As you look around, an unknown force suddenly strikes you, and instantly a cold breeze begins to quickly envelop you. Immediately, you recognize it as the force of the darkness. You try to shake it off and focus, hoping to overcome it this time, only to find that, once again, the effort makes your head spin. You have no choice but to give up and submit to the darkness."
+                },
+                {
+                    "reqs": {
+                        "visit-count": 5
+                    },
+                    "description": "As you had anticipated, the darkness quickly envelops you. At this point you already know resistance is futile. You give up and submit to the darkness."
+                }
+            ],
+            "options": [
+                {
+                    "action": "Give up",
+                    "state": "start",
+                    "resetFlags": true
+                }
+            ]
+        },
+        {
+            "id": "game-over",
+            "title": "Game Over",
+            "description": "You have been slain.",
+            "options": [
+                {
+                    "action": "Restart",
+                    "state": "start",
+                    "resetFlags": true
+                }
+            ]
+        },
+        {
+            "id": "victory",
+            "title": "Victory",
+            "description": "You have won the game.",
+            "options": [
+                {
+                    "action": "Restart",
+                    "state": "start",
+                    "resetFlags": true
+                }
+            ]
+        },
+        {
+            "id": "explore-1",
+            "title": "Found a Small Stone",
+            "description": "You make your best effort to explore the area, but can't find much due to the darkness. As you are about to give up, however, you notice a small stone on the ground, faintly glowing and pulsing in the dark. You feel a strange warmth emanating from it. For some reason, the stone feels — you suddenly realize — strangely familiar, but you don't quite remember exactly when or why you've seen it before.",
+            "req-desciptions": [
+                {
+                    "reqs": {
+                        "flags": ["got-magic-stone"]
+                    },
+                    "description": "After exploring the area for a while, you soon find the cold stone again, still glowing and pulsing in the dark. But this time, it's in a slightly different place than you remember. \"That's strange, I thought it was over there,\" you think to yourself."
+                }
+            ],
+            "options": [
+                {
+                    "action": "Pick up the stone",
+                    "state": "picked-up-stone"
+                },
+                {
+                    "action": "Leave the stone behind and continue exploring",
+                    "state": "explore-2"
+                },
+                {
+                    "action": "Look around for more objects",
+                    "state": "looked-around-basic"
+                },
+                {
+                    "action": "Sit down and try to figure out what you remember about the stone",
+                    "state": "sat-down"
+                }
+            ]
+        },
+        {
+            "id": "picked-up-stone",
+            "title": "A Magic Stone?",
+            "description": "You pick up the stone. It feels smooth and light. As you touch it, you notice a faint, warm vibration emanating from its core. What's strange though is that it feels cold to the touch, yet somehow also seems to heat you up. You should probably do something with it.",
+            "options": [
+                {
+                    "action": "Put the stone back down",
+                    "state": "left-stone"
+                },
+                {
+                    "action": "Put the stone in your pocket",
+                    "state": "has-stone"
+                }
+            ]
+        },
+        {
+            "id": "left-stone",
+            "title": "Left the stone behind",
+            "description": "You put the stone back down. Maybe you can get it later. Or, have you already changed your mind?",
+            "options": [
+                {
+                    "action": "Look around for more objects",
+                    "state": "looked-around-basic"
+                },
+                {
+                    "action": "Pick it back up",
+                    "state": "picked-up-stone"
+                },
+                {
+                    "action": "Explore the room more",
+                    "state": "explore-2"
+                }
+            ]
+        },
+        {
+            "id": "has-stone",
+            "title": "A Magic Stone?",
+            "description": "Shrugging, you decide to put it in your pocket. Maybe you can figure out a way to use it?",
+            "options": [
+                {
+                    "action": "Look around to see if there are more objects",
+                    "state": "looked-around-basic"
+                },
+                {
+                    "action": "Sit down and think about how to use it",
+                    "state": "sat-down"
+                },
+                {
+                    "action": "Explore the room more",
+                    "state": "explore-2"
+                }
+            ],
+            "on-enter": {
+                "unlock-flags": ["has-stone", "got-magic-stone"]
+            }
+        },
+        {
+            "id": "explore-2",
+            "title": "A Hidden Door",
+            "description": "You make your best effort to continue exploring the area, but can't find much due to the darkness. However, this time, your hand brushes against a cold, metallic surface. As you feel around, you feel what appears to be a handle. It must be some sort of door. But where does it lead to? You have not the slightest idea.",
+            "options": [
+                {
+                    "action": "Look around for more objects",
+                    "state": "looked-around-basic"
+                },
+                {
+                    "action": "Sit down and think about what to do next",
+                    "state": "sat-down"
+                },
+                {
+                    "action": "Go back and check the stone you ignored",
+                    "state": "explore-1",
+                    "reqs": {
+                        "no-flags": ["has-stone", "got-magic-stone"]
+                    }
+                },
+                {
+                    "action": "Go back to get the cold stone",
+                    "state": "explore-1",
+                    "reqs": {
+                        "flags": ["got-magic-stone"],
+                        "no-flags": ["has-stone"]
+                    }
+                },
+                {
+                    "action": "Try to open the metallic door",
+                    "state": "corridor-entrance"
+                },
+                {
+                    "action": "Touch the door with the Cold Stone",
+                    "state": "door-open",
+                    "reqs": {
+                        "flags": ["has-stone"]
+                    }
+                },
+                {
+                    "action": "Start a puzzle !?!?!!",
+                    "state": "puzzle-prime-home"
+                }
+            ]
+        },
+        {
+            "id": "door-open",
+            "title": "Opened the Door",
+            "description": "You opened the door and won.",
+            "copy-options": "victory"
+        },
+        {
+            "id": "corridor-entrance",
+            "title": "The Dark Corridor",
+            "description": "You push the heavy metallic door open. It groans, revealing a long, narrow corridor stretching into absolute blackness. The air here is stale and smells of old rust.",
+            "req-desciptions": [
+                {
+                    "reqs": {
+                        "flags": ["has-stone"]
+                    },
+                    "description": "You push the heavy metallic door open. The corridor is pitch black, but the stone in your pocket pulses violently. You pull it out, and its glow illuminates the walls. You immediately freeze—illuminated by the pale light, you see that the floor directly in front of you is missing, revealing a bottomless pit. A narrow ledge runs along the left wall."
+                }
+            ],
+            "options": [
+                {
+                    "action": "Walk blindly forward",
+                    "state": "death-pit",
+                    "reqs": {
+                        "no-flags": ["has-stone"]
+                    }
+                },
+                {
+                    "action": "Shimmy along the narrow ledge",
+                    "state": "archive-room",
+                    "reqs": {
+                        "flags": ["has-stone"]
+                    }
+                },
+                {
+                    "action": "Return to the previous room",
+                    "state": "explore-2"
+                }
+            ]
+        },
+        {
+            "id": "death-pit",
+            "title": "Consumed by Gravity",
+            "description": "Confident in your path, you take a step forward into the darkness. Your foot finds no purchase. There is no floor. You tumble silently into the abyss, falling for what feels like eternity before the sudden stop.",
+            "copy-options": "game-over"
+        },
+        {
+            "id": "archive-room",
+            "title": "The Archive",
+            "description": "You carefully navigate the ledge and reach the other side. You find yourself in a small, circular room lined with ancient, rotting bookshelves. In the center sits a stone pedestal with a strange mechanical device embedded in it.",
+            "req-desciptions": [
+                {
+                    "reqs": {
+                        "flags": ["read-diary"]
+                    },
+                    "description": "You are back in the Archive. The bookshelves remain silent, but the device on the pedestal seems to be waiting for input."
+                },
+                {
+                    "reqs": {
+                        "flags": ["solved-puzzle-1"]
+                    },
+                    "description": "The Archive is quiet. The device on the pedestal is now open, revealing a keyhole."
+                }
+            ],
+            "options": [
+                {
+                    "action": "Inspect the bookshelves",
+                    "state": "inspect-books"
+                },
+                {
+                    "action": "Examine the device",
+                    "state": "puzzle-device"
+                },
+                {
+                    "action": "Insert the Glowing Stone into the device",
+                    "state": "true-ending",
+                    "reqs": {
+                        "flags": ["solved-puzzle-1", "has-stone"]
+                    }
+                },
+                {
+                    "action": "Go back across the ledge",
+                    "state": "explore-2"
+                }
+            ]
+        },
+        {
+            "id": "inspect-books",
+            "title": "Dusty Knowledge",
+            "description": "Most of the books crumble to dust as soon as you touch them. However, you find one leather-bound journal that remains intact. You open it. The pages are filled with frantic scribbles: ' The darkness is alive. It feeds on repetition. To break the cycle, one must align the mechanism: Three turns left, one turn right, press the center.'",
+            "options": [
+                {
+                    "action": "Put the book down and turn to the device",
+                    "state": "archive-room"
+                }
+            ],
+            "on-exit": {
+                "unlock-flags": ["read-diary"]
+            }
+        },
+        {
+            "id": "puzzle-device",
+            "title": "The Mechanism",
+            "description": "The device has a rotating dial and a central button. It looks complicated. Without knowing the combination, random guessing seems dangerous.",
+            "req-desciptions": [
+                {
+                    "reqs": {
+                        "flags": ["read-diary"]
+                    },
+                    "description": "The device has a rotating dial and a central button. You recall the scribbles from the journal: 'Three left, one right, press center.'"
+                },
+                 {
+                    "reqs": {
+                        "flags": ["solved-puzzle-1"]
+                    },
+                    "description": "You have already solved this puzzle. The mechanism is unlocked, exposing a cavity exactly the size of the stone you found."
+                }
+            ],
+            "options": [
+                {
+                    "action": "Randomly turn the dials",
+                    "state": "puzzle-fail"
+                },
+                {
+                    "action": "Enter combination: 3 Left, 1 Right, Press",
+                    "state": "puzzle-solved",
+                    "reqs": {
+                        "flags": ["read-diary"],
+                        "no-flags": ["solved-puzzle-1"]
+                    }
+                },
+                {
+                    "action": "Leave it alone",
+                    "state": "archive-room"
+                }
+            ]
+        },
+        {
+            "id": "puzzle-fail",
+            "title": "Wrong Move",
+            "description": "You turn the dial randomly. A sharp click echoes through the room. Suddenly, spikes shoot out from the pedestal!",
+            "options": [
+                {
+                    "action": "Dodge!",
+                    "state": "archive-room"
+                }
+            ],
+             "on-enter": {
+                "description": "You narrowly dodge the spikes, but the mechanism resets. That was close."
+            }
+        },
+        {
+            "id": "puzzle-solved",
+            "title": "Mechanism Unlocked",
+            "description": "You follow the instructions from the diary. The gears grind heavily, and the top of the pedestal slides open. Inside, there is a socket that looks like it requires a power source.",
+            "options": [
+                {
+                    "action": "Look at the socket",
+                    "state": "archive-room"
+                }
+            ],
+            "on-enter": {
+                "unlock-flags": ["solved-puzzle-1"]
+            }
+        },
+        {
+            "id": "true-ending",
+            "title": "The Cycle Broken",
+            "description": "You place the glowing stone into the socket. The light from the stone flares violently, blinding you. The walls of the dark room, the corridor, and the archive dissolve into code, then into light. You are no longer trapping in the loop. You wake up in a field of grass, the sun warming your face for the first time in an eternity.",
+            "options": [
+                {
+                    "action": "Rest",
+                    "state": "home",
+                    "resetFlags": true
+                }
+            ]
+        }
+    ]
+}
