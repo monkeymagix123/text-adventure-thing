@@ -176,7 +176,18 @@
                 },
                 {
                     "action": "Go back and check the stone you ignored",
-                    "state": "explore-1"
+                    "state": "explore-1",
+                    "reqs": {
+                        "no-flags": ["has-stone"]
+                    }
+                },
+                {
+                    "action": "Go back to get the cold stone",
+                    "state": "explore-1",
+                    "reqs": {
+                        "flags": ["got-magic-stone"],
+                        "no-flags": ["has-stone"]
+                    }
                 },
                 {
                     "action": "Try to open the metallic door",
