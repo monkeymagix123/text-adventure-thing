@@ -1,0 +1,326 @@
+{
+    "flags": ["played-once", "solved-puzzle-1", "got-magic-stone"],
+    "temporaryFlags": ["has-stone", "temp-system-active"],
+    "states": [
+        {
+            "id": "home",
+            "title": "Home",
+            "description": "Welcome to the game",
+            "options": [
+                {
+                    "action": "Play",
+                    "state": "start"
+                }
+            ]
+        },
+        {
+            "id": "start",
+            "title": "Start",
+            "description": "You wake up in a dark room. The air is still and heavy. Somehow, you feel like you've been here before. There's not quite anything to do at the moment, so you might as well explore.",
+            "req-desciptions": [
+                {
+                    "reqs": {
+                        "flags": ["played-once"]
+                    },
+                    "description": "You wake up again in the dark room. The silence is deafening. You know the drill by now."
+                }
+            ],
+            "options": [
+                {
+                    "action": "Explore",
+                    "state": "explore-1"
+                },
+                {
+                    "action": "Gaze into the darkness",
+                    "state": "looked-around-basic"
+                },
+                {
+                    "action": "Sit down",
+                    "state": "sat-down"
+                }
+            ],
+            "on-exit": {
+                "unlock-flags": ["played-once"]
+            }
+        },
+        {
+            "id": "sat-down",
+            "title": "Sat Down",
+            "description": "You sit down, expecting to feel the cold floor beneath your feet. But instead, you find yourself in another dark room. Again.",
+            "req-desciptions": [
+                {
+                    "reqs": {
+                        "flags": ["temp-system-active"]
+                    },
+                    "description": "You sit down. Because you activated the glyphs, the room's dimensional stabilizers are working. You do not teleport away. Instead, you catch your breath. On the floor, illuminated by the now-active glyphs, you see a scratched message: 'The stone is the key, but the mind is the map.'"
+                }
+            ],
+            "options": [
+                {
+                    "action": "Stand up and continue",
+                    "state": "start",
+                    "reqs": {
+                        "flags": ["temp-system-active"]
+                    }
+                },
+                {
+                    "action": "Accept your fate (Reset)",
+                    "state": "start",
+                    "resetFlags": true,
+                    "reqs": {
+                        "no-flags": ["temp-system-active"]
+                    }
+                }
+            ],
+            "on-enter": {
+                "resetFlags": true,
+                "reqs": {
+                    "no-flags": ["temp-system-active"]
+                }
+            }
+        },
+        {
+            "id": "looked-around-basic",
+            "title": "Looking Around?",
+            "description": "As you look around, an unknown force suddenly strikes you. You have no choice but to give up and submit to the darkness.",
+            "req-desciptions": [
+                {
+                    "reqs": {
+                        "flags": ["has-stone"]
+                    },
+                    "description": "The shadows hiss and retreat! The stone protects you. It is safe to look around for a moment."
+                },
+                {
+                    "reqs": {
+                        "flags": ["temp-system-active"],
+                        "no-flags": ["has-stone"]
+                    },
+                    "description": "The darkness tries to envelop you, but the green light from the active puzzle glyphs keeps the worst of the shadows at bay. You can barely see, but you are safe for now."
+                }
+            ],
+            "options": [
+                {
+                    "action": "Give up",
+                    "state": "start",
+                    "resetFlags": true,
+                    "reqs": {
+                        "no-flags": ["has-stone", "temp-system-active"]
+                    }
+                },
+                {
+                    "action": "Return to exploring",
+                    "state": "explore-1",
+                    "reqs": {
+                        "flags": ["has-stone"]
+                    }
+                },
+                {
+                    "action": "Retreat to the glowing glyphs",
+                    "state": "explore-2",
+                    "reqs": {
+                        "flags": ["temp-system-active"],
+                        "no-flags": ["has-stone"]
+                    }
+                }
+            ]
+        },
+        {
+            "id": "game-over",
+            "title": "Game Over",
+            "description": "You have been slain.",
+            "options": [
+                {
+                    "action": "Restart",
+                    "state": "start",
+                    "resetFlags": true
+                }
+            ]
+        },
+        {
+            "id": "explore-1",
+            "title": "Found a Small Stone",
+            "description": "You notice a small stone on the ground, faintly glowing and pulsing in the dark.",
+            "options": [
+                {
+                    "action": "Pick up the stone",
+                    "state": "picked-up-stone",
+                    "reqs": {
+                        "no-flags": ["has-stone"]
+                    }
+                },
+                {
+                    "action": "Leave the stone behind and continue exploring",
+                    "state": "explore-2"
+                }
+            ]
+        },
+        {
+            "id": "picked-up-stone",
+            "title": "A Magic Stone?",
+            "description": "You pick up the stone. It feels cold to the touch, yet somehow also seems to heat you up.",
+            "options": [
+                {
+                    "action": "Put the stone in your pocket",
+                    "state": "has-stone"
+                }
+            ]
+        },
+        {
+            "id": "has-stone",
+            "title": "A Magic Stone?",
+            "description": "Shrugging, you decide to put it in your pocket.",
+            "options": [
+                {
+                    "action": "Explore the room more",
+                    "state": "explore-2"
+                }
+            ],
+            "on-enter": {
+                "unlock-flags": ["has-stone", "got-magic-stone"]
+            }
+        },
+        {
+            "id": "explore-2",
+            "title": "A Hidden Door",
+            "description": "Your hand brushes against a cold, metallic surface. There is a large door here.",
+            "req-desciptions": [
+                {
+                    "reqs": {
+                        "flags": ["temp-system-active"]
+                    },
+                    "description": "You stand before the metallic door. Because you solved the puzzle, a previously hidden panel has slid open to the right of the door, revealing a secret compartment."
+                }
+            ],
+            "options": [
+                {
+                    "action": "Go back and check the stone area",
+                    "state": "explore-1",
+                    "reqs": {
+                        "no-flags": ["has-stone"]
+                    }
+                },
+                {
+                    "action": "Try to open the metallic door",
+                    "state": "corridor-entrance"
+                },
+                {
+                    "action": "Touch the door with the Cold Stone",
+                    "state": "door-open",
+                    "reqs": {
+                        "flags": ["has-stone"],
+                        "no-flags": ["temp-system-active"]
+                    }
+                },
+                {
+                    "action": "Insert Stone and Synchronize with Systems",
+                    "state": "door-open-master",
+                    "reqs": {
+                        "flags": ["has-stone", "temp-system-active"]
+                    }
+                },
+                {
+                    "action": "Check the Secret Compartment",
+                    "state": "secret-compartment",
+                    "reqs": {
+                        "flags": ["temp-system-active"]
+                    }
+                },
+                {
+                    "action": "Inspect the faint markings",
+                    "state": "puzzle-prime-home"
+                }
+            ]
+        },
+        {
+            "id": "corridor-entrance",
+            "title": "Locked Tight",
+            "description": "It seems to be magnetically sealed. There is no keyhole.",
+            "options": [
+                {
+                    "action": "Go back",
+                    "state": "explore-2"
+                }
+            ]
+        },
+        {
+            "id": "secret-compartment",
+            "title": "The Engineer's Stash",
+            "description": "Inside the panel revealed by the puzzle, you find a diagram of the facility. It explains that the 'Darkness' is actually a security system, and the Stone is a user-key. You feel much more confident now.",
+            "options": [
+                {
+                    "action": "Close panel",
+                    "state": "explore-2"
+                }
+            ]
+        },
+        {
+            "id": "puzzle-prime-home",
+            "title": "The Glowing Glyphs",
+            "description": "Glowing text reads: 'I am the beginning of the endless, the only even among the odd. Speak my name to proceed.'",
+            "options": [
+                {
+                    "action": "Enter '1'",
+                    "state": "puzzle-fail"
+                },
+                {
+                    "action": "Enter '2'",
+                    "state": "puzzle-success"
+                },
+                {
+                    "action": "Leave it alone",
+                    "state": "explore-2"
+                }
+            ]
+        },
+        {
+            "id": "puzzle-fail",
+            "title": "Incorrect",
+            "description": "The glyphs turn red. The floor drops.",
+            "options": [
+                {
+                    "action": "Fall",
+                    "state": "game-over",
+                    "resetFlags": true
+                }
+            ]
+        },
+        {
+            "id": "puzzle-success",
+            "title": "System Active",
+            "description": "The glyphs pulse green. A hum vibrates through the floor. The facility's auxiliary power has been restored in this sector. This might reveal hidden things or stabilize the environment.",
+            "on-enter": {
+                "unlock-flags": ["solved-puzzle-1", "temp-system-active"]
+            },
+            "options": [
+                {
+                    "action": "Return to the door",
+                    "state": "explore-2"
+                }
+            ]
+        },
+        {
+            "id": "door-open",
+            "title": "Escaped",
+            "description": "You press the stone against the door. It slides open, revealing sunlight. You run out, escaping the room, but you never learned what this place was.",
+            "options": [
+                {
+                    "action": "Restart",
+                    "state": "start",
+                    "resetFlags": true
+                }
+            ]
+        },
+        {
+            "id": "door-open-master",
+            "title": "Master of the Facility",
+            "description": "With the systems active, you don't just open the door; you command it. The stone slots in, and lights illuminate the corridor ahead. You step out not as a refugee, but as the owner of this place. You have fully conquered the loop.",
+            "options": [
+                {
+                    "action": "Restart",
+                    "state": "start",
+                    "resetFlags": true
+                }
+            ]
+        }
+    ]
+}

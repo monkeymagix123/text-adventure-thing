@@ -1,0 +1,357 @@
+{
+    "flags": ["played-once", "solved-puzzle-1", "got-magic-stone"],
+    "temporaryFlags": ["has-stone"],
+    "states": [
+        {
+            "id": "home",
+            "title": "Home",
+            "description": "Welcome to the game",
+            "options": [
+                {
+                    "action": "Play",
+                    "state": "start"
+                }
+            ]
+        },
+        {
+            "id": "start",
+            "title": "Start",
+            "description": "You wake up in a dark room. The air is still and heavy, and the silence is unnerving. Somehow, you feel like you've been here before, yet you don't remember why nor how. There's not quite anything to do at the moment, so you might as well explore. You could also try to look into the darkness for something useful, although it's going to be very hard to see anything in the dark until you find a reliable source of light.",
+            "req-desciptions": [
+                {
+                    "reqs": {
+                        "flags": ["played-once"]
+                    },
+                    "description": "You wake up again in the dark room. The silence is deafening. You know the drill by now."
+                },
+                {
+                    "reqs": {
+                        "visit-count": 100
+                    },
+                    "description": "You wake up once again in the dark room for what seems like hundreds of times. Maybe this time you'll finally learn more about how you got here."
+                }
+            ],
+            "options": [
+                {
+                    "action": "Explore",
+                    "state": "explore-1"
+                },
+                {
+                    "action": "Gaze into the darkness",
+                    "state": "looked-around-basic"
+                },
+                {
+                    "action": "Sit down",
+                    "state": "sat-down"
+                }
+            ],
+            "on-exit": {
+                "unlock-flags": ["played-once"]
+            }
+        },
+        {
+            "id": "sat-down",
+            "title": "Sat Down",
+            "description": "You sit down, expecting to feel the cold floor beneath your feet. But instead, you find yourself in another dark room. Again.",
+            "copy-options": "start",
+            "on-enter": {
+                "resetFlags": true
+            }
+        },
+        {
+            "id": "looked-around-basic",
+            "title": "Looking Around?",
+            "description": "As you look around, an unknown force suddenly strikes you. In an instant, you feel a cold breeze that quickly envelops you. It seems familiar but also seems to deprive you of your energy. You try to shake it off and focus, hoping to spot a clue amidst the darkness, only to find that the effort makes your head spin. You have no choice but to give up and submit to the darkness.",
+            "req-desciptions": [
+                {
+                    "reqs": {
+                        "temporaryFlags": ["has-stone"]
+                    },
+                    "description": "You gaze into the darkness. The entities lurking there rush towards you, but the faint glow of the stone in your pocket pulses violently. The shadows hiss and retreat! The stone protects you, though you feel it draining your warmth to do so. It is safe to look around for a moment."
+                },
+                {
+                    "reqs": {
+                        "visit-count": 5
+                    },
+                    "description": "As you had anticipated, the darkness quickly envelops you. At this point you already know resistance is futile. You give up and submit to the darkness."
+                }
+            ],
+            "options": [
+                {
+                    "action": "Give up",
+                    "state": "start",
+                    "resetFlags": true,
+                    "reqs": {
+                        "no-flags": ["has-stone"]
+                    }
+                },
+                {
+                    "action": "Return to exploring",
+                    "state": "explore-1",
+                    "reqs": {
+                        "flags": ["has-stone"]
+                    }
+                }
+            ]
+        },
+        {
+            "id": "game-over",
+            "title": "Game Over",
+            "description": "You have been slain.",
+            "options": [
+                {
+                    "action": "Restart",
+                    "state": "start",
+                    "resetFlags": true
+                }
+            ]
+        },
+        {
+            "id": "game-over-noise",
+            "title": "Devoured by Echoes",
+            "description": "The noise you made echoes endlessly through the metallic corridors. Something heard you. Something fast. Before you can react, the darkness consumes you.",
+            "options": [
+                {
+                    "action": "Restart",
+                    "state": "start",
+                    "resetFlags": true
+                }
+            ]
+        },
+        {
+            "id": "victory",
+            "title": "Victory",
+            "description": "The door slides open, revealing a blinding white light. You step through, leaving the loop behind. You have won the game.",
+            "options": [
+                {
+                    "action": "Restart",
+                    "state": "start",
+                    "resetFlags": true
+                }
+            ]
+        },
+        {
+            "id": "explore-1",
+            "title": "Found a Small Stone",
+            "description": "You make your best effort to explore the area, but can't find much due to the darkness. As you are about to give up, however, you notice a small stone on the ground, faintly glowing and pulsing in the dark. You feel a strange warmth emanating from it. For some reason, the stone feels — you suddenly realize — strangely familiar, but you don't quite remember exactly when or why you've seen it before.",
+            "req-desciptions": [
+                {
+                    "reqs": {
+                        "flags": ["got-magic-stone"]
+                    },
+                    "description": "After exploring the area for a while, you soon find the cold stone again, still glowing and pulsing in the dark. But this time, it's in a slightly different place than you remember. \"That's strange, I thought it was over there,\" you think to yourself."
+                }
+            ],
+            "options": [
+                {
+                    "action": "Pick up the stone",
+                    "state": "picked-up-stone",
+                    "reqs": {
+                        "no-flags": ["has-stone"]
+                    }
+                },
+                {
+                    "action": "Leave the stone behind and continue exploring",
+                    "state": "explore-2"
+                },
+                {
+                    "action": "Look around for more objects",
+                    "state": "looked-around-basic"
+                },
+                {
+                    "action": "Sit down and try to figure out what you remember about the stone",
+                    "state": "sat-down"
+                }
+            ]
+        },
+        {
+            "id": "picked-up-stone",
+            "title": "A Magic Stone?",
+            "description": "You pick up the stone. It feels smooth and light. As you touch it, you notice a faint, warm vibration emanating from its core. What's strange though is that it feels cold to the touch, yet somehow also seems to heat you up. You should probably do something with it.",
+            "options": [
+                {
+                    "action": "Put the stone back down",
+                    "state": "left-stone"
+                },
+                {
+                    "action": "Put the stone in your pocket",
+                    "state": "has-stone"
+                }
+            ]
+        },
+        {
+            "id": "left-stone",
+            "title": "Left the stone behind",
+            "description": "You put the stone back down. Maybe you can get it later. Or, have you already changed your mind?",
+            "options": [
+                {
+                    "action": "Look around for more objects",
+                    "state": "looked-around-basic"
+                },
+                {
+                    "action": "Pick it back up",
+                    "state": "picked-up-stone"
+                },
+                {
+                    "action": "Explore the room more",
+                    "state": "explore-2"
+                }
+            ]
+        },
+        {
+            "id": "has-stone",
+            "title": "A Magic Stone?",
+            "description": "Shrugging, you decide to put it in your pocket. Maybe you can figure out a way to use it?",
+            "options": [
+                {
+                    "action": "Look around to see if there are more objects",
+                    "state": "looked-around-basic"
+                },
+                {
+                    "action": "Sit down and think about how to use it",
+                    "state": "sat-down"
+                },
+                {
+                    "action": "Explore the room more",
+                    "state": "explore-2"
+                }
+            ],
+            "on-enter": {
+                "unlock-flags": ["has-stone", "got-magic-stone"]
+            }
+        },
+        {
+            "id": "explore-2",
+            "title": "A Hidden Door",
+            "description": "You make your best effort to continue exploring the area, but can't find much due to the darkness. However, this time, your hand brushes against a cold, metallic surface. As you feel around, you feel what appears to be a handle. It must be some sort of door. But where does it lead to? You have not the slightest idea.",
+            "options": [
+                {
+                    "action": "Look around for more objects",
+                    "state": "looked-around-basic"
+                },
+                {
+                    "action": "Sit down and think about what to do next",
+                    "state": "sat-down"
+                },
+                {
+                    "action": "Go back and check the stone you ignored",
+                    "state": "explore-1",
+                    "reqs": {
+                        "no-flags": ["has-stone", "got-magic-stone"]
+                    }
+                },
+                {
+                    "action": "Go back to get the cold stone",
+                    "state": "explore-1",
+                    "reqs": {
+                        "flags": ["got-magic-stone"],
+                        "no-flags": ["has-stone"]
+                    }
+                },
+                {
+                    "action": "Try to open the metallic door",
+                    "state": "corridor-entrance"
+                },
+                {
+                    "action": "Touch the door with the Cold Stone",
+                    "state": "door-open",
+                    "reqs": {
+                        "flags": ["has-stone"]
+                    }
+                },
+                {
+                    "action": "Inspect the faint markings near the door",
+                    "state": "puzzle-prime-home"
+                }
+            ]
+        },
+        {
+            "id": "corridor-entrance",
+            "title": "Locked Tight",
+            "description": "You pull on the handle, but it doesn't budge. It seems to be magnetically sealed. There is no keyhole, only a strange indentation that looks like it requires an object to fit into it.",
+            "options": [
+                {
+                    "action": "Kick the door in frustration",
+                    "state": "game-over-noise"
+                },
+                {
+                    "action": "Go back",
+                    "state": "explore-2"
+                }
+            ]
+        },
+        {
+            "id": "puzzle-prime-home",
+            "title": "The Glowing Glyphs",
+            "description": "As you lean closer to the metallic wall, glowing text flickers into existence. It reads: 'I am the beginning of the endless, the only even among the odd. Speak my name to proceed.' Below the text, a keypad materializes.",
+            "req-desciptions": [
+                {
+                    "reqs": {
+                        "flags": ["solved-puzzle-1"]
+                    },
+                    "description": "You look at the wall. The glyphs are dull and lifeless. You have already solved this riddle in a previous life. The knowledge is still in your head."
+                }
+            ],
+            "options": [
+                {
+                    "action": "Enter '1'",
+                    "state": "puzzle-fail"
+                },
+                {
+                    "action": "Enter '2'",
+                    "state": "puzzle-success",
+                    "reqs": {
+                        "no-flags": ["solved-puzzle-1"]
+                    }
+                },
+                {
+                    "action": "Recall the answer (2)",
+                    "state": "puzzle-success",
+                    "reqs": {
+                        "flags": ["solved-puzzle-1"]
+                    }
+                },
+                {
+                    "action": "Enter '3'",
+                    "state": "puzzle-fail"
+                },
+                {
+                    "action": "Leave it alone",
+                    "state": "explore-2"
+                }
+            ]
+        },
+        {
+            "id": "puzzle-fail",
+            "title": "Incorrect",
+            "description": "The glyphs turn an angry red. A high-pitched screech emits from the wall, piercing your ears. The floor drops from beneath you.",
+            "options": [
+                {
+                    "action": "Fall into the abyss",
+                    "state": "game-over",
+                    "resetFlags": true
+                }
+            ]
+        },
+        {
+            "id": "puzzle-success",
+            "title": "Correct",
+            "description": "The glyphs pulse green and fade away. You feel a surge of intellectual clarity. While the door doesn't open, you hear a mechanical click. Perhaps you unlocked something elsewhere, or maybe you just gained knowledge.",
+            "on-enter": {
+                "unlock-flags": ["solved-puzzle-1"]
+            },
+            "options": [
+                {
+                    "action": "Return to the door",
+                    "state": "explore-2"
+                }
+            ]
+        },
+        {
+            "id": "door-open",
+            "title": "Opened the Door",
+            "description": "You press the cold stone against the indentation. The stone heats up intensely, glowing bright blue. The metallic door hisses and slides open.",
+            "copy-options": "victory"
+        }
+    ]
+}
