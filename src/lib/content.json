@@ -123,7 +123,7 @@
             "options": [
                 {
                     "action": "Pick up the stone",
-                    "state": "has-stone"
+                    "state": "picked-up-stone"
                 },
                 {
                     "action": "Leave the stone behind and continue exploring",
@@ -140,9 +140,24 @@
             ]
         },
         {
+            "id": "picked-up-stone",
+            "title": "A Magic Stone?",
+            "description": "You pick up the stone. It feels smooth and light. As you touch it, you notice a faint, warm vibration emanating from its core. What's strange though is that it feels cold to the touch, yet somehow also seems to heat you up. You should probably do something with it.",
+            "options": [
+                {
+                    "action": "Put the stone back down",
+                    "state": "explore-2"
+                },
+                {
+                    "action": "Put the stone in your pocket",
+                    "state": "explore-2"
+                }
+            ]
+        },
+        {
             "id": "has-stone",
             "title": "A Magic Stone?",
-            "description": "You pick up the stone. It feels smooth and light. As you touch it, you notice a faint, warm vibration emanating from its core. What's strange though is that it feels cold to the touch, yet somehow also seems to heat you up. Shrugging, you decide to put it in your pocket. Maybe you can figure out a way to use it?",
+            "description": "Shrugging, you decide to put it in your pocket. Maybe you can figure out a way to use it?",
             "options": [
                 {
                     "action": "Look around to see if there are more objects",
