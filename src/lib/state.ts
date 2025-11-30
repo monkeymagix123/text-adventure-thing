@@ -176,7 +176,12 @@ export function loadOption(states: Map<string, State>, data: StateData): boolean
 }
 
 export function convertOption(data: ActionData, states: Map<string, State>, replaceState?: State): Action {
-    const toState = replaceState ?? states.get(data.state)!;
+    const toState = replaceState ?? states.get(data.state) ?? defaultState(states, data.state);
 
     return { ...data, state: toState };
+}
+
+function defaultState(states: Map<string, State>, failState: string = "fail", defaultState: string = "start"): State {
+    console.warn(`Could not find desired state ${failState}. Defaulting to start.`);
+    return states.get(defaultState)!;
 }
