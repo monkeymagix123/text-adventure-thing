@@ -1,5 +1,5 @@
 {
-    "flags": ["played-once", "solved-puzzle-1"],
+    "flags": ["played-once", "solved-puzzle-1", "got-magic-stone"],
     "temporaryFlags": ["has-stone"],
     "states": [
         {
@@ -111,14 +111,14 @@
         {
             "id": "explore-1",
             "title": "Explored 1",
-            "description": "You make your best effort to explore, but can't find much due to the darkness. However, you do see a small stone on the ground.",
+            "description": "You make your best effort to explore the area, but can't find much due to the darkness. As you are about to give up, however, you notice a small stone on the ground, faintly glowing and pulsing in the dark. You feel a strange warmth emanating from it.",
             "options": [
                 {
                     "action": "Pick up the stone",
                     "state": "has-stone"
                 },
                 {
-                    "action": "Leave the stone behind",
+                    "action": "Leave the stone behind and continue exploring",
                     "state": "explore-2"
                 },
                 {
@@ -126,15 +126,15 @@
                     "state": "looked-around-basic"
                 },
                 {
-                    "action": "Sit down and think about what to do next / how to use it",
+                    "action": "Sit down and think about how to use it",
                     "state": "sat-down"
                 }
             ]
         },
         {
             "id": "has-stone",
-            "title": "Has Stone",
-            "description": "You pick up the stone. It feels smooth and light. The strange thing is, it somehow feels cold to the touch, yet also seems to heat you up. You shrug and put it in your pocket. Maybe you can figure out a way to use it?",
+            "title": "A Magic Stone?",
+            "description": "You pick up the stone. It feels smooth and light. As you touch it, you notice a faint, warm vibration emanating from its core. What's strange though is that it feels cold to the touch, yet somehow also seems to heat you up. Shrugging, you decide to put it in your pocket. Maybe you can figure out a way to use it?",
             "options": [
                 {
                     "action": "Look around to see if there are more objects",
@@ -150,13 +150,13 @@
                 }
             ],
             "on-enter": {
-                "unlock-flags": ["has-stone"]
+                "unlock-flags": ["has-stone", "got-magic-stone"]
             }
         },
         {
             "id": "explore-2",
             "title": "Explored 2",
-            "description": "You make your best effort to explore, but can't find much due to the darkness. However, you do notice a hard metallic surface. As you feel around, you notice what appears to be a handle.",
+            "description": "You make your best effort to explore, but can't find much due to the darkness. However, this time, your hand brushes against a cold, metallic surface. As you feel around, you feel what appears to be a handle. It must be some sort of door. But where does it lead to? You have not the slightest idea.",
             "options": [
                 {
                     "action": "Look around to see if there are more objects",
