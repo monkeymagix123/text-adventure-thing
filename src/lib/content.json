@@ -146,10 +146,29 @@
             "options": [
                 {
                     "action": "Put the stone back down",
-                    "state": "explore-2"
+                    "state": "left-stone"
                 },
                 {
                     "action": "Put the stone in your pocket",
+                    "state": "has-stone"
+                }
+            ]
+        },
+        {
+            "id": "left-stone",
+            "title": "Left the stone behind",
+            "description": "You put the stone back down. Maybe you can get it later. Or, have you already changed your mind?",
+            "options": [
+                {
+                    "action": "Look around for more objects",
+                    "state": "looked-around-basic"
+                },
+                {
+                    "action": "Pick it back up",
+                    "state": "picked-up-stone"
+                },
+                {
+                    "action": "Explore the room more",
                     "state": "explore-2"
                 }
             ]
@@ -193,7 +212,7 @@
                     "action": "Go back and check the stone you ignored",
                     "state": "explore-1",
                     "reqs": {
-                        "no-flags": ["has-stone"]
+                        "no-flags": ["has-stone", "got-magic-stone"]
                     }
                 },
                 {
