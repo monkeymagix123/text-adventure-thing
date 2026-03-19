@@ -2,10 +2,10 @@
  * Define a small interface every puzzle module follows.
  */
 
-import type { State } from "../state";
+import type { State } from "$lib/state";
 
-export interface PuzzleModule {
+export interface PuzzleModule<TPuzzle> {
     id: string;
-    init(home: State, states: Map<string, State>): void;
-    link(home: State, states: Map<string, State>): void;
+    init(puzzle: TPuzzle, home: State, states: Map<string, State>): void;
+    link(puzzle: TPuzzle, home: State, states: Map<string, State>): void;
 }

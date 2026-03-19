@@ -1,24 +1,18 @@
 /**
  * This moves the current prime-specific logic out of the central puzzle file.
+ * Uses validated puzzle shape.
  */
 
-import puzzleContentRaw from "../puzzle-content.json";
-
-import { State, convertOption, loadOption } from "../state";
+import { State, convertOption, loadOption } from "$lib/state";
 import type {
     ActionDataValidated as ActionData,
     PuzzleContentValidated,
     StateDataValidated as StateData
-} from "../contentSchema";
+} from "$lib/contentSchema";
 import { fillStageTemplate } from "./helpers";
 import type { PuzzleModule } from "./registry";
 
-type PrimePuzzleData = PuzzleContentValidated["primes"];
-
-function getPrimePuzzle(): PrimePuzzleData {
-    const puzzleContent = puzzleContentRaw as PuzzleContentValidated;
-    return puzzleContent.primes;
-}
+export type PrimePuzzleData = PuzzleContentValidated["primes"];
 
 function getStageTemplate(puzzle: PrimePuzzleData): StateData {
     const template = puzzle.states.find((state) => state.isStage);
@@ -36,11 +30,10 @@ function isSpecialTarget(option: ActionData, specialTarget: string): boolean {
     return option.target === specialTarget;
 }
 
-export const primePuzzle: PuzzleModule = {
+export const primePuzzle: PuzzleModule<PrimePuzzleData> = {
     id: "primes",
 
-    init(_home: State, states: Map<string, State>): void {
-        const puzzle = getPrimePuzzle();
+    init(puzzle, _home, states): void {
         const template = getStageTemplate(puzzle);
 
         for (const state of getNonStageStates(puzzle)) {
@@ -56,8 +49,7 @@ export const primePuzzle: PuzzleModule = {
         }
     },
 
-    link(_home: State, states: Map<string, State>): void {
-        const puzzle = getPrimePuzzle();
+    link(puzzle, _home, states): void {
         const template = getStageTemplate(puzzle);
 
         for (const state of getNonStageStates(puzzle)) {

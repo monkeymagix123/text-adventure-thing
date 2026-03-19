@@ -40,15 +40,13 @@ export function loadContent(rawData: unknown = rawContentData): LoadedContent {
         throw new Error('Could not find required state "home" in content.json');
     }
 
-    initPuzzles(home, states);
+    initPuzzles(puzzles, home, states);
 
-    // load main content options first
     for (const state of content.states) {
         loadOption(states, state);
     }
 
-    // then let puzzles link, since they may depend on main states
-    linkPuzzles(home, states);
+    linkPuzzles(puzzles, home, states);
 
     return { states, home, content, puzzles };
 }
