@@ -2,11 +2,18 @@
     import Button from "../components/Button.svelte";
     import Game from "../components/Game.svelte";
     import { goHome } from "$lib/gameStore.svelte";
+    import { saveGame, loadGame, resetGame } from "$lib/gameStore.svelte";
 </script>
 
 <main>
     <div class="m-4">
-        <Button onclick={goHome}>Exit game</Button>
+        <div class="flex gap-2">
+            <Button onclick={goHome}>Exit game</Button>
+            <Button onclick={saveGame}>Save</Button>
+            <Button onclick={loadGame}>Load</Button>
+            <Button onclick={resetGame}>Clear Save</Button>
+        </div>
+
         <Game />
     </div>
 </main>

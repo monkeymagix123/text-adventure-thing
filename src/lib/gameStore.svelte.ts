@@ -7,7 +7,8 @@ import { loadContent } from "./contentLoader";
 import type { Action, State } from "./state";
 
 const { states, home } = loadContent();
-const engine = new GameEngine(home);
+const engine = new GameEngine(home, states);
+const SAVE_KEY = "text-adventure-save";
 
 let currentState = $state(engine.current);
 
@@ -42,6 +43,27 @@ export function goHome(): void {
 export function resetGame(): void {
     engine.reset();
     syncState();
+}
+
+export function saveGame(): void {
+    const data = engine.getSaveData();
+    localStorage.setItem(SAVE_KEY, JSON.stringify(data));
+}
+
+export function loadGame(): boolean {
+    const raw = localStorage.getItem(SAVE_KEY);
+    if (!raw) {
+        return false;
+    }
+
+    const data = JSON.parse(raw);
+    engine.loadSaveData(data);
+    syncState();
+    return true;
+}
+
+export function clearSave(): void {
+    localStorage.removeItem(SAVE_KEY);
 }
 
 export function getAllStates(): Map<string, State> {

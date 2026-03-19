@@ -75,6 +75,26 @@ class GameVars {
         }
     }
 
+    /** Returns a shallow copy of all flags for save data */
+    getAllFlags(): Record<string, boolean> {
+        return { ...this.flags };
+    }
+
+    /** Replaces all flag values from save data */
+    setAllFlags(flags: Record<string, boolean>): void {
+        // Reset known flags first
+        for (const key of Object.keys(this.flags)) {
+            this.flags[key] = false;
+        }
+
+        // Restore saved values, but only for known flags
+        for (const [key, value] of Object.entries(flags)) {
+            if (key in this.flags) {
+                this.flags[key] = value;
+            }
+        }
+    }
+
     // VALUES
 }
 
