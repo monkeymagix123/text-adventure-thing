@@ -11,11 +11,12 @@ import content from "$lib/content.json";
 // const localStorage = window.localStorage;
 
 class GameVars {
+    /** List of session flags */
+    static tempFlags: Array<string> = [];
+
     // FLAGS
     /** All flags, including session flags */
     flags: Record<string, boolean> = {};
-    /** List of session flags */
-    tempFlags: Array<string> = [];
     
     // COUNTERS
     /** Number of times the game has been played (not including this round) */
@@ -35,11 +36,12 @@ class GameVars {
         /** Set session flags to false and stores them as session flags */
         for (const flag of content.sessionFlags) {
             this.flags[flag] = false;
-            this.tempFlags.push(flag);
+            GameVars.tempFlags.push(flag);
         }
     }
 
     // UTILITY FUNCTIONS
+    // FLAGS
     /** Sets flag to value */
     setFlag(flag: string, value: boolean) {
         this.flags[flag] = value;
@@ -64,11 +66,13 @@ class GameVars {
      */
     resetFlags(tempOnly: boolean = true) {
         for (const flag of Object.keys(this.flags)) {
-            if (!tempOnly || this.tempFlags.includes(flag)) {
+            if (!tempOnly || GameVars.tempFlags.includes(flag)) {
                 this.flags[flag] = false;
             }
         }
     }
+
+    // VALUES
 }
 
 export const gameVars = new GameVars();
