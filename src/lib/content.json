@@ -225,7 +225,7 @@
                 },
                 {
                     "action": "Try to open the metallic door",
-                    "target": "corridor-entrance"
+                    "target": "door-open"
                 },
                 {
                     "action": "Touch the door with the Cold Stone",

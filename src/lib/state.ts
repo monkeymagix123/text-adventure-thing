@@ -3,6 +3,11 @@
  */
 
 import type { Requirements } from "./util";
+import type {
+    ActionDataValidated as ActionData,
+    InterStateDataValidated as InterStateData,
+    StateDataValidated as StateData
+} from "./contentSchema";
 
 export class State {
     title: string;
@@ -12,9 +17,7 @@ export class State {
     onEnter?: InterStateData;
     onExit?: InterStateData;
 
-    /** Number of times this state has been exited. */
     visitCount = 0;
-
     options: Action[] = [];
 
     constructor(data: StateData | string, description?: string) {
@@ -40,38 +43,14 @@ export class State {
     }
 }
 
-export interface Action {
-    action: string;
-    target: State;
-    reqs?: Requirements;
-    resetFlags?: boolean;
-}
-
-export interface StateData {
-    id: string;
-    isStage?: boolean;
-    title: string;
-    description: string;
-    "req-descriptions"?: Desc[];
-    options?: ActionData[];
-    "copy-options"?: string;
-    "on-enter"?: InterStateData;
-    "on-exit"?: InterStateData;
-}
-
 export interface Desc {
     description: string;
     reqs?: Requirements;
 }
 
-export interface InterStateData {
-    "unlock-flags"?: string[];
-    resetFlags?: boolean;
-}
-
-export interface ActionData {
+export interface Action {
     action: string;
-    target: string;
+    target: State;
     reqs?: Requirements;
     resetFlags?: boolean;
 }

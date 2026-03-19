@@ -3,44 +3,49 @@
  * build and link the full state graph from your JSON content.
  */
 
-import { SvelteMap } from "svelte/reactivity";
+import rawContentData from "./content.json";
+import rawPuzzleData from "./puzzle-content.json";
 
-import contentData from "./content.json";
-import type { ContentData } from "./contentData";
+import type {
+    ContentDataValidated,
+    PuzzleContentValidated
+} from "./contentSchema";
+import { validateContent } from "./validateContent";
+import { validatePuzzleContent } from "./validatePuzzleContent";
+import { validateAllContentSemantics } from "./validateContentSemantics";
 import { initPuzzles, linkPuzzles } from "./puzzles";
 import { loadOption, State } from "./state";
 
 export interface LoadedContent {
     states: Map<string, State>;
     home: State;
+    content: ContentDataValidated;
+    puzzles: PuzzleContentValidated;
 }
 
-export function loadContent(
-    content: ContentData = contentData as ContentData
-): LoadedContent {
-    const states: Map<string, State> = new SvelteMap<string, State>();
+export function loadContent(rawData: unknown = rawContentData): LoadedContent {
+    const content = validateContent(rawData, "content.json");
+    const puzzles = validatePuzzleContent(rawPuzzleData, "puzzle-content.json");
 
-    // 1. Create all normal states first
+    validateAllContentSemantics(content, puzzles);
+
+    const states = new Map<string, State>();
+
     for (const state of content.states) {
         states.set(state.id, new State(state));
     }
 
-    // 2. Resolve the home/start state
     const home = states.get("home");
     if (!home) {
         throw new Error('Could not find required state "home" in content.json');
     }
 
-    // 3. Let puzzles create any generated states
     initPuzzles(home, states);
+    linkPuzzles(home, states);
 
-    // 4. Link normal content options
     for (const state of content.states) {
         loadOption(states, state);
     }
 
-    // 5. Let puzzles link their custom transitions
-    linkPuzzles(home, states);
-
-    return { states, home };
+    return { states, home, content, puzzles };
 }
