@@ -1,4 +1,4 @@
-import { hasAllFlags, hasNoFlags } from "./flags";
+import { hasAllFlags, hasNoFlags } from "./gameVars";
 import type { State } from "./state";
 
 export interface Requirements {

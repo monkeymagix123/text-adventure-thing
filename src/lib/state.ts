@@ -1,6 +1,6 @@
 import { setState } from "./pos.svelte";
 
-import { resetFlags, setFlag } from "./flags";
+import { resetFlags, setFlag } from "./gameVars";
 import { util, type Requirements } from "./util";
 
 export class State {
