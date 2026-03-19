@@ -49,6 +49,9 @@ class GameVars {
         // maybe show something in achievements?
     }
 
+    /** Checks if flag is true */
+    checkFlag(flag: string): boolean { return this.flags[flag]; }
+
     /** Checks if all flags in 'reqs' are true */
     hasAllFlags(reqs: string[]): boolean {
         return reqs.every((flag: string) => { return this.flags[flag] });
