@@ -4,6 +4,7 @@ import type {
     PuzzleDefinitionValidated,
     StateDataValidated
 } from "./contentSchema";
+import { expandStageIds } from "./puzzles/helpers";
 
 const SPECIAL_TARGETS = new Set([
     "[toggle]",
@@ -76,22 +77,6 @@ function addPuzzleStateIds(
             addUniqueStateId(ids, generatedId, `puzzle-content.json (${puzzleName})`);
         }
     }
-}
-
-function expandStageIds(templateId: string, startNum: number, endNum: number): string[] {
-    if (!templateId.includes("[#]")) {
-        throw new Error(
-            `Invalid puzzle-content.json: stage template id "${templateId}" must include "[#]".`
-        );
-    }
-
-    const ids: string[] = [];
-
-    for (let i = startNum; i <= endNum; i++) {
-        ids.push(templateId.replace("[#]", i.toString()));
-    }
-
-    return ids;
 }
 
 function addUniqueStateId(

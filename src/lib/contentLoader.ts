@@ -41,11 +41,14 @@ export function loadContent(rawData: unknown = rawContentData): LoadedContent {
     }
 
     initPuzzles(home, states);
-    linkPuzzles(home, states);
 
+    // load main content options first
     for (const state of content.states) {
         loadOption(states, state);
     }
+
+    // then let puzzles link, since they may depend on main states
+    linkPuzzles(home, states);
 
     return { states, home, content, puzzles };
 }
