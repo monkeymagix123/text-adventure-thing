@@ -1,49 +1,70 @@
-import { loadOption, State } from "./state";
-import contentData from "./content.json";
-import { type ContentData } from "./contentData";
-
 import { SvelteMap } from "svelte/reactivity";
+
+import contentData from "./content.json";
+import type { ContentData } from "./contentData";
+import { GameEngine } from "./gameEngine";
 import { initPuzzles, linkPuzzles } from "./puzzles";
+import { loadOption, State, type Action } from "./state";
 
 const content = contentData as ContentData;
-
 const states: Map<string, State> = new SvelteMap<string, State>();
 
-function setup(): State {
-    // populate states with basic, non-puzzle states
+function setupStates(): State {
     for (const state of content.states) {
         states.set(state.id, new State(state));
     }
-    
-    // create home state as default
+
     const home = states.get("home")!;
-    
-    // create puzzle states
+
     initPuzzles(home, states);
-    
-    // add in options
+
     for (const state of content.states) {
         loadOption(states, state);
     }
-    
-    // link results of the puzzle actions to the states
+
     linkPuzzles(home, states);
 
-    // return home state
     return home;
 }
 
-export const home = setup();
+export const home = setupStates();
+const engine = new GameEngine(home);
 
-/** Current state player is in */
-let state = $state(home);
+let currentState = $state(engine.current);
 
-export function getState(): State {
-    return state;
+function syncState(): void {
+    currentState = engine.current;
 }
 
-export function setState(newState: State) {
-    state = newState;
+export function getState(): State {
+    return currentState;
+}
 
-    newState.enterState();
+export function getDescription(): string {
+    currentState;
+    return engine.getDescription();
+}
+
+export function getOptions(): Action[] {
+    currentState;
+    return engine.getOptions();
+}
+
+export function choose(action: Action): void {
+    engine.choose(action);
+    syncState();
+}
+
+export function goHome(): void {
+    engine.goTo(home);
+    syncState();
+}
+
+export function resetGame(): void {
+    engine.reset();
+    syncState();
+}
+
+export function getAllStates(): Map<string, State> {
+    return states;
 }

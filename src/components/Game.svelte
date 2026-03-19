@@ -1,37 +1,33 @@
 <script lang="ts">
-    import { getState } from "$lib/pos.svelte";
-	import { type Action } from "$lib/state";
-    import Button from "../components/Button.svelte"; // Assuming this is a custom button component
+    import { getState, getDescription, getOptions, choose } from "$lib/pos.svelte";
+    import type { Action } from "$lib/state";
 
-    // Use $state for reactive state management in modern Svelte
     const state = $derived(getState());
+    const description = $derived(getDescription());
+    const options = $derived(getOptions());
 
-    // Function to handle option click for cleaner template
-    const handleOptionClick = (option: Action) => {
-        console.log(option);
-        state.doOption(option);
-    };
+    function handleOptionClick(option: Action) {
+        choose(option);
+    }
 </script>
 
 <main>
     <section class="content-header">
-        <h1 class="title"> {state.title} </h1>
-        <p class="description"> {state.getDescription()} </p>
+        <h1 class="title">{state.title}</h1>
+        <p class="description">{description}</p>
     </section>
 
     <hr class="separator" />
 
     <section class="actions-container">
-        {#each state.getOptions() as option}
-            <button 
-                class="action-button" 
-                onclick={ () => handleOptionClick(option) }
-            > 
-                {option.action} 
+        {#each options as option}
+            <button
+                class="action-button"
+                onclick={() => handleOptionClick(option)}
+            >
+                {option.action}
             </button>
         {/each}
-
-        <!-- <button class="utility-button"> Test Functionality </button> -->
     </section>
 </main>
 

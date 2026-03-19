@@ -83,7 +83,7 @@ function linkPrimePuzzle(home: State, states: Map<string, State>) {
             const isToggle = primeNums.includes(i);
 
             for (const option of state.options) {
-                const isCorrect = (isToggle === (option.state === "[toggle]"));
+                const isCorrect = (isToggle === (option.target === "[toggle]"));
 
                 const resultState = isCorrect ? nextState : failState;
 

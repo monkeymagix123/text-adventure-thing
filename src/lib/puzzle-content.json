@@ -27,28 +27,28 @@
                 "options": [
                     {
                         "action": "Start the puzzle",
-                        "state": "puzzle-prime-start",
+                        "target": "puzzle-prime-start",
                         "reqs": {
                             "no-flags": ["solved-puzzle-1"]
                         }
                     },
                     {
                         "action": "Try to find some clues",
-                        "state": "puzzle-prime-hint-1",
+                        "target": "puzzle-prime-hint-1",
                         "reqs": {
                             "no-flags": ["solved-puzzle-1"]
                         }
                     },
                     {
                         "action": "Leave the room",
-                        "state": "puzzle-prime-fail",
+                        "target": "puzzle-prime-fail",
                         "reqs": {
                             "no-flags": ["solved-puzzle-1"]
                         }
                     },
                     {
                         "action": "Leave the room",
-                        "state": "explore-2",
+                        "target": "explore-2",
                         "reqs": {
                             "flags": ["solved-puzzle-1"]
                         }
@@ -62,15 +62,15 @@
                 "options": [
                     {
                         "action": "Take a closer look",
-                        "state": "puzzle-prime-hint-2"
+                        "target": "puzzle-prime-hint-2"
                     },
                     {
                         "action": "Ignore the pedestal and just start the puzzle",
-                        "state": "puzzle-prime-start"
+                        "target": "puzzle-prime-start"
                     },
                     {
                         "action": "Leave the room",
-                        "state": "puzzle-prime-fail"
+                        "target": "puzzle-prime-fail"
                     }
                 ]
             },
@@ -81,15 +81,15 @@
                 "options": [
                     {
                         "action": "Look more closely",
-                        "state": "puzzle-prime-fail"
+                        "target": "puzzle-prime-fail"
                     },
                     {
                         "action": "Give up reading and just start the puzzle",
-                        "state": "puzzle-prime-start-hint"
+                        "target": "puzzle-prime-start-hint"
                     },
                     {
                         "action": "Leave the room",
-                        "state": "puzzle-prime-fail"
+                        "target": "puzzle-prime-fail"
                     }
                 ]
             },
@@ -100,7 +100,7 @@
                 "options": [
                     {
                         "action": "Move to the first switch",
-                        "state": "puzzle-prime-stage-1"
+                        "target": "puzzle-prime-stage-1"
                     }
                 ]
             },
@@ -127,7 +127,7 @@
                 "options": [
                     {
                         "action": "Restart",
-                        "state": "start",
+                        "target": "start",
                         "resetFlags": true
                     }
                 ]
@@ -140,11 +140,11 @@
                 "options": [
                     {
                         "action": "Toggle the switch",
-                        "state": "[toggle]"
+                        "target": "[toggle]"
                     },
                     {
                         "action": "Move on",
-                        "state": "[next]"
+                        "target": "[next]"
                     }
                 ]
             }

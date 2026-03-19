@@ -9,7 +9,7 @@
             "options": [
                 {
                     "action": "Play",
-                    "state": "start"
+                    "target": "start"
                 }
             ]
         },
@@ -34,15 +34,15 @@
             "options": [
                 {
                     "action": "Explore",
-                    "state": "explore-1"
+                    "target": "explore-1"
                 },
                 {
                     "action": "Gaze into the darkness",
-                    "state": "looked-around-basic"
+                    "target": "looked-around-basic"
                 },
                 {
                     "action": "Sit down",
-                    "state": "sat-down"
+                    "target": "sat-down"
                 }
             ],
             "on-exit": {
@@ -79,7 +79,7 @@
             "options": [
                 {
                     "action": "Give up",
-                    "state": "start",
+                    "target": "start",
                     "resetFlags": true
                 }
             ]
@@ -91,7 +91,7 @@
             "options": [
                 {
                     "action": "Restart",
-                    "state": "start",
+                    "target": "start",
                     "resetFlags": true
                 }
             ]
@@ -103,7 +103,7 @@
             "options": [
                 {
                     "action": "Restart",
-                    "state": "start",
+                    "target": "start",
                     "resetFlags": true
                 }
             ]
@@ -123,19 +123,19 @@
             "options": [
                 {
                     "action": "Pick up the stone",
-                    "state": "picked-up-stone"
+                    "target": "picked-up-stone"
                 },
                 {
                     "action": "Leave the stone behind and continue exploring",
-                    "state": "explore-2"
+                    "target": "explore-2"
                 },
                 {
                     "action": "Look around for more objects",
-                    "state": "looked-around-basic"
+                    "target": "looked-around-basic"
                 },
                 {
                     "action": "Sit down and try to figure out what you remember about the stone",
-                    "state": "sat-down"
+                    "target": "sat-down"
                 }
             ]
         },
@@ -146,11 +146,11 @@
             "options": [
                 {
                     "action": "Put the stone back down",
-                    "state": "left-stone"
+                    "target": "left-stone"
                 },
                 {
                     "action": "Put the stone in your pocket",
-                    "state": "has-stone"
+                    "target": "has-stone"
                 }
             ]
         },
@@ -161,15 +161,15 @@
             "options": [
                 {
                     "action": "Look around for more objects",
-                    "state": "looked-around-basic"
+                    "target": "looked-around-basic"
                 },
                 {
                     "action": "Pick it back up",
-                    "state": "picked-up-stone"
+                    "target": "picked-up-stone"
                 },
                 {
                     "action": "Explore the room more",
-                    "state": "explore-2"
+                    "target": "explore-2"
                 }
             ]
         },
@@ -180,15 +180,15 @@
             "options": [
                 {
                     "action": "Look around to see if there are more objects",
-                    "state": "looked-around-basic"
+                    "target": "looked-around-basic"
                 },
                 {
                     "action": "Sit down and think about how to use it",
-                    "state": "sat-down"
+                    "target": "sat-down"
                 },
                 {
                     "action": "Explore the room more",
-                    "state": "explore-2"
+                    "target": "explore-2"
                 }
             ],
             "on-enter": {
@@ -202,22 +202,22 @@
             "options": [
                 {
                     "action": "Look around for more objects",
-                    "state": "looked-around-basic"
+                    "target": "looked-around-basic"
                 },
                 {
                     "action": "Sit down and think about what to do next",
-                    "state": "sat-down"
+                    "target": "sat-down"
                 },
                 {
                     "action": "Go back and check the stone you ignored",
-                    "state": "explore-1",
+                    "target": "explore-1",
                     "reqs": {
                         "no-flags": ["has-stone", "got-magic-stone"]
                     }
                 },
                 {
                     "action": "Go back to get the cold stone",
-                    "state": "explore-1",
+                    "target": "explore-1",
                     "reqs": {
                         "flags": ["got-magic-stone"],
                         "no-flags": ["has-stone"]
@@ -225,18 +225,18 @@
                 },
                 {
                     "action": "Try to open the metallic door",
-                    "state": "corridor-entrance"
+                    "target": "corridor-entrance"
                 },
                 {
                     "action": "Touch the door with the Cold Stone",
-                    "state": "door-open",
+                    "target": "door-open",
                     "reqs": {
                         "flags": ["has-stone"]
                     }
                 },
                 {
                     "action": "Start a puzzle !?!?!!",
-                    "state": "puzzle-prime-home"
+                    "target": "puzzle-prime-home"
                 }
             ]
         },
