@@ -1,33 +1,12 @@
-import { SvelteMap } from "svelte/reactivity";
+/**
+ * Live session/reactive wrapper for the UI
+ */
 
-import contentData from "./content.json";
-import type { ContentData } from "./contentData";
 import { GameEngine } from "./gameEngine";
-import { initPuzzles, linkPuzzles } from "./puzzles";
-import { loadOption, State, type Action } from "./state";
+import { loadContent } from "./contentLoader";
+import type { Action, State } from "./state";
 
-const content = contentData as ContentData;
-const states: Map<string, State> = new SvelteMap<string, State>();
-
-function setupStates(): State {
-    for (const state of content.states) {
-        states.set(state.id, new State(state));
-    }
-
-    const home = states.get("home")!;
-
-    initPuzzles(home, states);
-
-    for (const state of content.states) {
-        loadOption(states, state);
-    }
-
-    linkPuzzles(home, states);
-
-    return home;
-}
-
-export const home = setupStates();
+const { states, home } = loadContent();
 const engine = new GameEngine(home);
 
 let currentState = $state(engine.current);

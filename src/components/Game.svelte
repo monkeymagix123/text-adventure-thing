@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { getState, getDescription, getOptions, choose } from "$lib/pos.svelte";
+    import { getState, getDescription, getOptions, choose } from "$lib/gameStore.svelte";
     import type { Action } from "$lib/state";
 
     const state = $derived(getState());

@@ -1,3 +1,7 @@
+/**
+ * State/action types and graph-linking helpers
+ */
+
 import type { Requirements } from "./util";
 
 export class State {

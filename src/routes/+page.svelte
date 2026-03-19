@@ -1,7 +1,7 @@
 <script>
     import Button from "../components/Button.svelte";
     import Game from "../components/Game.svelte";
-    import { goHome } from "$lib/pos.svelte";
+    import { goHome } from "$lib/gameStore.svelte";
 </script>
 
 <main>

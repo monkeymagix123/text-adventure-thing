@@ -1,3 +1,7 @@
+/**
+ * Runtime gameplay rules
+ */
+
 import { gameVars } from "./gameVars";
 import { util } from "./util";
 import type { Action, State } from "./state";
