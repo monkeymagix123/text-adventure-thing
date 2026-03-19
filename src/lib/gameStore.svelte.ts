@@ -36,7 +36,7 @@ export function choose(action: Action): void {
 }
 
 export function goHome(): void {
-    engine.goTo(home);
+    engine.jumpTo(home);
     syncState();
 }
 

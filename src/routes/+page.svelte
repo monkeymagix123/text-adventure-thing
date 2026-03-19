@@ -8,7 +8,7 @@
 <main>
     <div class="m-4">
         <div class="flex gap-2">
-            <Button onclick={goHome}>Exit game</Button>
+            <Button onclick={goHome}>Main Menu</Button>
             <Button onclick={saveGame}>Save</Button>
             <Button onclick={loadGame}>Load</Button>
             <Button onclick={resetGame}>Clear Save</Button>

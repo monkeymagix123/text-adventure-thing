@@ -75,11 +75,15 @@ export class GameEngine {
         return this.current;
     }
 
+    jumpTo(state: State): State {
+        this.current = state;
+        return this.current;
+    }
+
     reset(): State {
         gameVars.resetFlags(false);
         this.resetVisitCounts();
         this.current = this.start;
-        this.applyEnter(this.current);
         return this.current;
     }
 
