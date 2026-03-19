@@ -1,6 +1,6 @@
 {
     "flags": ["played-once", "solved-puzzle-1", "got-magic-stone"],
-    "temporaryFlags": ["has-stone"],
+    "sessionFlags": ["has-stone"],
     "states": [
         {
             "id": "home",

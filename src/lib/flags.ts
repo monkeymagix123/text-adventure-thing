@@ -9,7 +9,7 @@ for (const flag of content.flags) {
     flags[flag] = false;
 }
 
-for (const flag of content.temporaryFlags) {
+for (const flag of content.sessionFlags) {
     flags[flag] = false;
     tempFlags.push(flag);
 }
