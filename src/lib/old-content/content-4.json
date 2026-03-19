@@ -17,7 +17,7 @@
             "id": "start",
             "title": "Start",
             "description": "You wake up in a dark room. The air is still and heavy. Somehow, you feel like you've been here before. There's not quite anything to do at the moment, so you might as well explore.",
-            "req-desciptions": [
+            "req-descriptions": [
                 {
                     "reqs": {
                         "flags": ["played-once"]
@@ -47,7 +47,7 @@
             "id": "sat-down",
             "title": "Sat Down",
             "description": "You sit down, expecting to feel the cold floor beneath your feet. But instead, you find yourself in another dark room. Again.",
-            "req-desciptions": [
+            "req-descriptions": [
                 {
                     "reqs": {
                         "flags": ["temp-system-active"]
@@ -83,7 +83,7 @@
             "id": "looked-around-basic",
             "title": "Looking Around?",
             "description": "As you look around, an unknown force suddenly strikes you. You have no choice but to give up and submit to the darkness.",
-            "req-desciptions": [
+            "req-descriptions": [
                 {
                     "reqs": {
                         "flags": ["has-stone"]
@@ -183,7 +183,7 @@
             "id": "explore-2",
             "title": "A Hidden Door",
             "description": "Your hand brushes against a cold, metallic surface. There is a large door here.",
-            "req-desciptions": [
+            "req-descriptions": [
                 {
                     "reqs": {
                         "flags": ["temp-system-active"]

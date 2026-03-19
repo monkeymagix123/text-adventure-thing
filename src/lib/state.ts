@@ -22,7 +22,7 @@ export class State {
 
         this.title = data.title;
         this.description = data.description;
-        this.reqDesc = data["req-desciptions"];
+        this.reqDesc = data["req-descriptions"];
         this.onEnter = data["on-enter"];
         this.onExit = data["on-exit"];
     }
@@ -48,7 +48,7 @@ export interface StateData {
     isStage?: boolean;
     title: string;
     description: string;
-    "req-desciptions"?: Desc[];
+    "req-descriptions"?: Desc[];
     options?: ActionData[];
     "copy-options"?: string;
     "on-enter"?: InterStateData;

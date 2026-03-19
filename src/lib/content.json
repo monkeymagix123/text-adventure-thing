@@ -17,7 +17,7 @@
             "id": "start",
             "title": "Start",
             "description": "You wake up in a dark room. The air is still and heavy, and the silence is unnerving. Somehow, you feel like you've been here before, yet you don't remember why nor how. There's not quite anything to do at the moment, so you might as well explore. You could also try to look into the darkness for something useful, although it's going to be very hard to see anything in the dark until you find a reliable source of light.",
-            "req-desciptions": [
+            "req-descriptions": [
                 {
                     "reqs": {
                         "flags": ["played-once"]
@@ -62,7 +62,7 @@
             "id": "looked-around-basic",
             "title": "Looking Around?",
             "description": "As you look around, an unknown force suddenly strikes you. In an instant, you feel a cold breeze that quickly envelops you. It seems familiar but also seems to deprive you of your energy. You try to shake it off and focus, hoping to spot a clue amidst the darkness, only to find that the effort makes your head spin. You have no choice but to give up and submit to the darkness.",
-            "req-desciptions": [
+            "req-descriptions": [
                 {
                     "reqs": {
                         "visit-count": 1
@@ -112,7 +112,7 @@
             "id": "explore-1",
             "title": "Found a Small Stone",
             "description": "You make your best effort to explore the area, but can't find much due to the darkness. As you are about to give up, however, you notice a small stone on the ground, faintly glowing and pulsing in the dark. You feel a strange warmth emanating from it. For some reason, the stone feels — you suddenly realize — strangely familiar, but you don't quite remember exactly when or why you've seen it before.",
-            "req-desciptions": [
+            "req-descriptions": [
                 {
                     "reqs": {
                         "flags": ["got-magic-stone"]
