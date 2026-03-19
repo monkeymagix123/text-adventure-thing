@@ -65,7 +65,9 @@ export const StateDataSchema = z
 
 export const ContentDataSchema = z
     .object({
+        /** Permanent progression flags. */
         flags: z.array(z.string()).optional(),
+        /** Temporary/session progression flags. */
         sessionFlags: z.array(z.string()).optional(),
         states: z.array(StateDataSchema)
     })
