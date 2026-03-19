@@ -4,7 +4,7 @@
     "states": [
         {
             "id": "home",
-            "title": "Home",
+            "title": "Main Menu",
             "description": "Welcome to the game",
             "options": [
                 {
