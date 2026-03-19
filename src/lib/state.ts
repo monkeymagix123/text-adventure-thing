@@ -1,6 +1,6 @@
 import { setState } from "./pos.svelte";
 
-import { resetFlags, setFlag } from "./gameVars";
+import { gameVars } from "./gameVars";
 import { util, type Requirements } from "./util";
 
 export class State {
@@ -47,7 +47,7 @@ export class State {
         setState(action.state);
 
         if (action.resetFlags) {
-            resetFlags();
+            gameVars.resetFlags();
         }
 
         this.exitState();
@@ -95,11 +95,11 @@ export class State {
     enterState() {
         if (this.onEnter !== undefined) {
             for (const flag of this.onEnter["unlock-flags"]!) {
-                setFlag(flag, true);
+                gameVars.setFlag(flag, true);
             }
 
             if (this.onEnter.resetFlags) {
-                resetFlags();
+                gameVars.resetFlags();
             }
         }
     }
@@ -110,11 +110,11 @@ export class State {
         // Unlock all flags that are unlocked on exit
         if (this.onExit !== undefined) {
             for (const flag of this.onExit["unlock-flags"]!) {
-                setFlag(flag, true);
+                gameVars.setFlag(flag, true);
             }
 
             if (this.onExit.resetFlags) {
-                resetFlags();
+                gameVars.resetFlags();
             }
         }
     }

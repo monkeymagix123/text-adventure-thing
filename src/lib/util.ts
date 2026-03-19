@@ -1,4 +1,4 @@
-import { hasAllFlags, hasNoFlags } from "./gameVars";
+import { gameVars } from "./gameVars";
 import type { State } from "./state";
 
 export interface Requirements {
@@ -11,8 +11,8 @@ export const util = {
     checkReqs(state: State, reqs?: Requirements): boolean {
         if (!reqs) return true;
 
-        const flagsEnough = !reqs.flags || hasAllFlags(reqs.flags);
-        const noBadFlags = !reqs["no-flags"] || hasNoFlags(reqs["no-flags"]);
+        const flagsEnough = !reqs.flags || gameVars.hasAllFlags(reqs.flags);
+        const noBadFlags = !reqs["no-flags"] || gameVars.hasNoFlags(reqs["no-flags"]);
         const visitEnough = !reqs["visit-count"] || state.visitCount >= reqs["visit-count"];
 
         return (flagsEnough && noBadFlags && visitEnough);

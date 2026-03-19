@@ -10,51 +10,65 @@ import content from "$lib/content.json";
 
 // const localStorage = window.localStorage;
 
-// FLAGS
-/** All flags, including session flags */
-const flags: Record<string, boolean> = {};
-/** List of session flags */
-const tempFlags: Array<string> = [];
+class GameVars {
+    // FLAGS
+    /** All flags, including session flags */
+    flags: Record<string, boolean> = {};
+    /** List of session flags */
+    tempFlags: Array<string> = [];
+    
+    // COUNTERS
+    /** Number of times the game has been played (not including this round) */
+    timesPlayed = 0;
+    // const timesSolved = 0;
+    // const timesFailed = 0;
+    // const visitCount = 0;
 
-/** Set non-session flags to false */
-for (const flag of content.flags) {
-    flags[flag] = false;
-}
+    constructor() {this.init(); }
 
-/** Set session flags to false and stores them as session flags */
-for (const flag of content.sessionFlags) {
-    flags[flag] = false;
-    tempFlags.push(flag);
-}
+    init() {
+        /** Set non-session flags to false */
+        for (const flag of content.flags) {
+            this.flags[flag] = false;
+        }
 
-export default flags;
+        /** Set session flags to false and stores them as session flags */
+        for (const flag of content.sessionFlags) {
+            this.flags[flag] = false;
+            this.tempFlags.push(flag);
+        }
+    }
 
-/** Sets flag to value */
-export function setFlag(flag: string, value: boolean) {
-    flags[flag] = value;
+    // UTILITY FUNCTIONS
+    /** Sets flag to value */
+    setFlag(flag: string, value: boolean) {
+        this.flags[flag] = value;
 
-    // maybe show something in achievements?
-}
+        // maybe show something in achievements?
+    }
 
-/** Checks if all flags in 'reqs' are true */
-export function hasAllFlags(reqs: string[]): boolean {
-    return reqs.every((flag: string) => { return flags[flag] });
-}
+    /** Checks if all flags in 'reqs' are true */
+    hasAllFlags(reqs: string[]): boolean {
+        return reqs.every((flag: string) => { return this.flags[flag] });
+    }
 
-/** Checks if all flags in 'reqs' are false */
-export function hasNoFlags(reqs: string[]): boolean {
-    return reqs.every((flag: string) => { return !flags[flag] });
-}
+    /** Checks if all flags in 'reqs' are false */
+    hasNoFlags(reqs: string[]): boolean {
+        return reqs.every((flag: string) => { return !this.flags[flag] });
+    }
 
-/**
- * Resets certain flags to false.
- * @param tempOnly If true, resets only session flags.  
- * Otherwise, resets all flags.
- */
-export function resetFlags(tempOnly: boolean = true) {
-    for (const flag of Object.keys(flags)) {
-        if (!tempOnly || tempFlags.includes(flag)) {
-            flags[flag] = false;
+    /**
+     * Resets certain flags to false.
+     * @param tempOnly If true, resets only session flags.  
+     * Otherwise, resets all flags.
+     */
+    resetFlags(tempOnly: boolean = true) {
+        for (const flag of Object.keys(this.flags)) {
+            if (!tempOnly || this.tempFlags.includes(flag)) {
+                this.flags[flag] = false;
+            }
         }
     }
 }
+
+export const gameVars = new GameVars();
