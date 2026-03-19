@@ -1,3 +1,11 @@
+/**
+ * Game variables class
+ * Includes:
+ * - Flags (session & non-session specific)
+ * - Counters (increments on certain events)
+ * - Values (named states, numbers, booleans, etc)
+ */
+
 import content from "$lib/content.json";
 
 // const localStorage = window.localStorage;
