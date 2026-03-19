@@ -15,8 +15,9 @@ export interface LoadedContent {
     home: State;
 }
 
-export function loadContent(): LoadedContent {
-    const content = contentData as ContentData;
+export function loadContent(
+    content: ContentData = contentData as ContentData
+): LoadedContent {
     const states: Map<string, State> = new SvelteMap<string, State>();
 
     // 1. Create all normal states first
